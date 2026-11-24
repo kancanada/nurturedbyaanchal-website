@@ -14,6 +14,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+html,body{overflow-x:clip}
 body{margin:0;background:var(--white);color:var(--ink);font-family:"Poppins",system-ui,sans-serif;font-size:1.0625rem;line-height:1.7;font-weight:400}
 a{color:inherit}
 img{max-width:100%;display:block}
@@ -37,8 +38,8 @@ h1,h2,h3,h4{font-weight:500;line-height:1.1;letter-spacing:-.01em;margin:0}
 
 /* Hero */
 .hero{padding:40px 0 80px;border-bottom:2px solid var(--line)}
-.hero-name{font-size:clamp(3.4rem,12.6vw,10.2rem);font-weight:600;line-height:.9;letter-spacing:-.035em;text-transform:uppercase;white-space:nowrap;position:relative;z-index:2}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:-28px}
+.hero-name{font-size:calc((min(100vw,1180px) - 80px) / 9.4);font-weight:600;line-height:.9;letter-spacing:-.035em;text-transform:uppercase;white-space:nowrap;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:28px}
 .hero-left{padding-top:56px;display:flex;flex-direction:column;gap:28px}
 .hero-sub{font-size:clamp(1.8rem,3.4vw,2.6rem);text-transform:uppercase;font-weight:400;line-height:1}
 .mark-hl{display:inline;background:var(--lime);text-transform:uppercase;font-size:1rem;line-height:1.55;box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:1px 2px}
@@ -167,7 +168,7 @@ section{padding:110px 0}
   .wrap{padding:0 22px}
   .site-nav{gap:16px}
   .site-nav .btn{padding:12px 18px}
-  .hero-name{white-space:normal;font-size:clamp(3.2rem,16vw,6rem)}
+  .hero-name{font-size:calc((100vw - 44px) / 9.4)}
   .hero-grid,.about-grid,.split-photo,.lists .wrap{grid-template-columns:1fr}
   .hero-grid{margin-top:20px}
   .hero-left{padding-top:0}
@@ -181,4 +182,7 @@ section{padding:110px 0}
   .list-links{grid-template-columns:1fr}
   .site-footer .wrap{grid-template-columns:1fr}
   section{padding:80px 0}
+}
+@media (max-width:900px) and (min-width:600px){
+  .hero-photo,.about-grid>.photo,.split-photo>.photo{max-width:480px}
 }
