@@ -4,7 +4,7 @@ Run from the repo root:  python3 _tools/build.py
 Content (recipes, posts, shop picks) lives in _tools/content.py.
 Photos: drop them in /images with the names in PHOTOS below and rebuild; until then a placeholder shows.
 """
-import json, os, html
+import json, os, html, hashlib
 from datetime import date
 
 SITE = "https://nurturedbyaanchal.com"
@@ -24,8 +24,16 @@ try:
     from content import RECIPES, POSTS, SHOP
 except ImportError:
     RECIPES, POSTS, SHOP = [], [], []
+from photos import RECIPE_PHOTOS
+for _r in RECIPES:
+    if RECIPE_PHOTOS.get(_r["slug"]) and not _r.get("image"):
+        _r["image"] = RECIPE_PHOTOS[_r["slug"]] + "?w=1200&h=900&fit=crop&crop=entropy&q=80&auto=format"
+        _r["credit"] = "Photo via Unsplash"
 from recipe_cards import make_all as _make_cards
 _make_cards(RECIPES)
+
+def absurl(u):
+    return u if u.startswith("http") else SITE + u
 
 
 def photo(key, alt):
@@ -34,6 +42,8 @@ def photo(key, alt):
         return f'<div class="photo"><img src="/{p}" alt="{html.escape(alt)}"></div>'
     return '<div class="photo empty" role="img" aria-label="Photo of Aanchal"><span>AB</span></div>'
 
+
+CSSV = hashlib.md5(open("assets/site.css","rb").read()).hexdigest()[:8]
 
 def head(title, desc, path, extra=""):
     full = title if path == "/" else f"{title} | Nurtured by Aanchal"
@@ -53,7 +63,7 @@ def head(title, desc, path, extra=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v={CSSV}">
 {extra}</head>
 <body>
 """
@@ -398,7 +408,9 @@ recipes_body = recipe_grid(RECIPES) if RECIPES else """<div class="soon">
     </div>"""
 write("/recipes/", head("Recipes", "Weeknight South Asian dinners and toddler meals from a working mom in Vancouver.", "/recipes/")
       + header("/recipes/") + page_title("Recipes", "The South Asian dinners and toddler meals we actually make after work.")
-      + f"""<section><div class="wrap">{recipes_body}</div></section>
+      + f"""<section><div class="wrap">
+    <div class="r-intro"><img src="/images/album/dosa-with-son.jpg" alt="Aanchal and her son at lunch with dosa and parathas" loading="lazy"><p>Food in our house is simple, quick and mostly South Asian. These are the dishes I lean on during a busy work week, plus a few my toddler actually eats. When we eat out, it's usually dosa.</p></div>
+    {recipes_body}</div></section>
 """ + NEWS + footer())
 
 # ================= BLOG =================
@@ -560,7 +572,7 @@ for r in RECIPES:
           "recipeIngredient": r["ingredients"],
           "recipeInstructions": [{"@type": "HowToStep", "text": s} for s in r["steps"]]}
     if r.get("image"):
-        ld["image"] = [SITE + r["image"]]
+        ld["image"] = [absurl(r["image"])]
     extra = f'<script type="application/ld+json">{json.dumps(ld)}</script>\n'
     ing = "".join(f"<li>{html.escape(i)}</li>" for i in r["ingredients"])
     steps = "".join(f"<li>{html.escape(s)}</li>" for s in r["steps"])
@@ -568,11 +580,11 @@ for r in RECIPES:
     reel = ig_embed(r["reel"], "Watch the Reel") if r.get("reel") else ""
     aff = '<p class="note">This post has affiliate links. See the <a href="/disclosure/">disclosure</a>.</p>' if r.get("affiliate") else ""
     ing_count = len(r["ingredients"])
-    write(f'/recipes/{r["slug"]}/', head(r["title"], r["summary"], f'/recipes/{r["slug"]}/', extra + f'<meta property="og:image" content="{SITE}{r["image"]}">\n')
+    write(f'/recipes/{r["slug"]}/', head(r["title"], r["summary"], f'/recipes/{r["slug"]}/', extra + f'<meta property="og:image" content="{absurl(r["image"])}">\n')
           + header("/recipes/") + page_title(html.escape(r["title"]), html.escape(r["summary"])).replace('class="page-title"','class="page-title post-title"')
           + f"""<section><div class="wrap prose post">
     <p class="meta-line">{html.escape(r.get("cat",""))} · {r["prep"] + r["cook"]} min · serves {r["servings"]} · <a href="#recipe">Jump to recipe</a></p>
-    <figure class="post-img"><img src="{r["image"]}" alt="{html.escape(r["title"])}"></figure>
+    <figure class="post-img"><img src="{r["image"]}" alt="{html.escape(r["title"])}">{f'<figcaption class="credit">{r["credit"]}</figcaption>' if r.get("credit") else ""}</figure>
     {aff}{story}{reel}
     <div class="recipe-card" id="recipe">
       <h2>{html.escape(r["title"])}</h2>
