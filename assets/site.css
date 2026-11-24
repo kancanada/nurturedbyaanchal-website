@@ -276,3 +276,4 @@ section{padding:110px 0}
 .r-intro p{font-size:1.15rem;margin:0}
 .post-img figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}
 @media (max-width:700px){.r-intro{grid-template-columns:1fr}}
+.r-intro img{object-position:left center}
