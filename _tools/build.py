@@ -141,6 +141,18 @@ def page_title(h1, p):
 
 
 IG_SCRIPT = '<script async src="https://www.instagram.com/embed.js"></script>\n'
+MOTION_JS = '''<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) { els.forEach(function(e){e.classList.add('in')}); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);
+    e.target.querySelectorAll('[data-count]').forEach(function(n){ var t=parseFloat(n.dataset.count), d=+(n.dataset.dec||0), suf=n.dataset.suffix||'', st=null;
+      function f(ts){ if(!st) st=ts; var p=Math.min((ts-st)/1200,1); n.textContent=(t*(1-Math.pow(1-p,3))).toFixed(d)+suf; if(p<1) requestAnimationFrame(f); } requestAnimationFrame(f); }); } }); }, {threshold:.2});
+  els.forEach(function(e){ io.observe(e) });
+})();
+</script>
+'''
 
 
 def ig_embed(url, label):
@@ -155,213 +167,10 @@ def link_list(items, base):
 
 
 # ================= HOME =================
-home = head("Nurtured by Aanchal | Real mom life in Vancouver",
-            "Aanchal Bathija is a working mom in Vancouver sharing postpartum fitness, family life, toddler meals and the routines that get her through the week.",
-            "/") + header("/") + f"""
-<section class="hero" style="padding-top:20px">
-  <div class="wrap">
-    <h1 class="hero-name">Aanchal Bathija</h1>
-    <div class="hero-grid">
-      <div class="hero-left">
-        <p class="hero-sub">Nurtured by Aanchal</p>
-        <p><span class="mark-hl">Working mom, toddler mom and wife, figuring out how to look after everyone, including myself.</span></p>
-        <p class="hero-pillars">Mom life. Fitness. Family. Real routines.</p>
-        <p><a class="btn" href="{IG}" rel="noopener">Follow my journey</a></p>
-      </div>
-      <div class="hero-photo">
-        {photo("hero", "Aanchal Bathija")}
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="statement">
-  <div class="wrap">
-    <h2>Helping new moms make time for themselves, honestly, between a full-time job, a toddler and family life.</h2>
-  </div>
-</section>
-
-<section class="olive center">
-  <div class="wrap">
-    <div class="pairs">
-      <h3>Feeling guilty for taking an hour at the gym?</h3>
-      <h3 class="answer">Not anymore.</h3>
-      <h3>Mom content that looks nothing like real life?</h3>
-      <h3 class="answer">Not here.</h3>
-      <h3>Choosing between your career, your family and yourself?</h3>
-      <h3 class="answer">Why not all three.</h3>
-    </div>
-    <a class="btn btn-light" href="{IG}" rel="noopener">Follow along</a>
-  </div>
-</section>
-
-<section>
-  <div class="wrap about-grid">
-    {photo("about", "Aanchal with her son")}
-    <div>
-      <p class="lead">Becoming a mom changed everything, including how much of me was left at the end of the day.</p>
-      <p>I work full time in home insurance. My husband Anuj and I are raising our two-year-old son in Vancouver, in a home full of South Asian food, family and culture.</p>
-      <p>Somewhere in the middle of all that, I decided my health and my time mattered too. So I started training again, and I started sharing it, the good days and the messy ones.</p>
-      <p>Now I share what actually works for us: workouts that fit around a workday, family meals, marriage, and the conversations South Asian families don't always have out loud.</p>
-      <h2 class="hi">Hi, I'm Aanchal.</h2>
-      <p class="creds">Working mom. Content creator. Vancouver.</p>
-      <a class="btn" href="/about/">My story</a>
-    </div>
-  </div>
-</section>
-
-<section class="feature">
-  <div class="wrap">
-    <h3>Recent work: a paid UGC video for Avee Health, a BC virtual-care service.</h3>
-    <p>I made it from a real moment in our life: getting a doctor for my son from home instead of waiting hours in the ER. Avee Health liked it enough to run it as an ad.</p>
-    <p class="who"><a href="{AVEE}" rel="noopener">Watch the video on Instagram</a></p>
-  </div>
-</section>
-
-
-<section class="gallery-sec">
-  <div class="wrap">
-    <h2 class="gal-title">Life lately</h2>
-    <p class="gal-sub">From the bump to the toddler years, and every trip in between.</p>
-    <div class="gallery">
-      <figure class="g-tall"><img src="/images/album/seattle-lift.webp" alt="Aanchal lifting her baby son into the air on the Seattle waterfront" loading="lazy"><figcaption>Seattle waterfront</figcaption></figure>
-      <figure><img src="/images/album/pregnant-market.jpg" alt="Aanchal pregnant at a flower market" loading="lazy"><figcaption>Waiting for him</figcaption></figure>
-      <figure><img src="/images/album/newborn-forest.jpg" alt="Aanchal holding her newborn son in a forest" loading="lazy"><figcaption>First walks</figcaption></figure>
-      <figure><img src="/images/album/family-beach.jpg" alt="Aanchal, Anuj and their son at the beach" loading="lazy"><figcaption>Family beach days</figcaption></figure>
-      <figure><img src="/images/album/statue-of-liberty.jpg" alt="Aanchal with the Statue of Liberty behind her" loading="lazy"><figcaption>New York</figcaption></figure>
-      <figure><img src="/images/album/swing.jpg" alt="Aanchal and her son on a swing" loading="lazy"><figcaption>Park afternoons</figcaption></figure>
-      <figure><img src="/images/album/brooklyn-bridge.jpg" alt="Aanchal on the Brooklyn Bridge" loading="lazy"><figcaption>Brooklyn Bridge</figcaption></figure>
-      <figure><img src="/images/album/sunglasses-son.jpg" alt="Aanchal and her son in matching sunglasses" loading="lazy"><figcaption>Matching shades</figcaption></figure>
-      <figure><img src="/images/album/couple-mountains.jpg" alt="Aanchal and Anuj in the mountains" loading="lazy"><figcaption>Us two</figcaption></figure>
-    </div>
-    <p style="text-align:center;margin-top:40px"><a class="btn" href="{IG}" rel="noopener">See more on Instagram</a></p>
-  </div>
-</section>
-
-<section class="olive share">
-  <div class="wrap">
-    <h2>What I talk about</h2>
-    <ul>
-      <li>Postpartum &amp; mom fitness</li>
-      <li>Working-mom routines</li>
-      <li>Women's health</li>
-      <li>Marriage &amp; relationships</li>
-      <li>South Asian family life</li>
-      <li>Toddler meals</li>
-      <li>Family travel</li>
-      <li>Mindset &amp; motivation</li>
-      <li>Honest product reviews</li>
-    </ul>
-  </div>
-</section>
-
-<div class="marquee" aria-label="Vancouver-based working mom">
-  <div class="marquee-track" aria-hidden="true">
-    <span>Vancouver-based 〰️ Working mom 〰️ Vancouver-based 〰️ Working mom 〰️</span>
-    <span>Vancouver-based 〰️ Working mom 〰️ Vancouver-based 〰️ Working mom 〰️</span>
-  </div>
-</div>
-
-<section class="lists">
-  <div class="wrap">
-    <div class="card">
-      <p class="label">You're juggling…</p>
-      <ul>
-        <li>A full-time job and a little one who needs you the minute you get home</li>
-        <li>Dinner, daycare pickups, laundry and bedtime, every single day</li>
-        <li>A body that changed after baby and a routine that disappeared</li>
-        <li>Family expectations, and the "log kya kahenge" voice in your head</li>
-        <li>A marriage that needs time too</li>
-      </ul>
-    </div>
-    <div class="card">
-      <p class="label">You feel like…</p>
-      <ul>
-        <li>There's no time left for you</li>
-        <li>Every other mom has it figured out</li>
-        <li>Taking an hour for yourself is selfish</li>
-        <li>You've lost a bit of who you were before baby</li>
-        <li>You're doing it all, and nobody sees it</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="big">
-  <div class="wrap">
-    <h2>Enough of "You're so lucky you have time to work out."</h2>
-    <h2>Let's talk about how it actually happens.</h2>
-  </div>
-</section>
-
-<section class="olive">
-  <div class="wrap split-photo">
-    <div>
-      <h2>every mom's week looks different.</h2>
-      <p class="bold">Mine has a full-time job, a toddler and a workout squeezed in somewhere.</p>
-      <p>I don't have a perfect routine, and I don't pretend to. What I share is the real version: what we eat on a Tuesday, how I fit training around work, how Anuj and I make it work, and what I'm still figuring out.</p>
-      <p>If you're a new mom trying to make room for yourself, you'll find something here that helps.</p>
-      <p><a class="btn btn-light" href="/blog/">Read the blog</a></p>
-    </div>
-    {photo("family", "Aanchal with her family")}
-  </div>
-</section>
-
-<section class="latest">
-  <div class="wrap">
-    <div class="latest-head"><h2>From my kitchen</h2><a href="/recipes/">All recipes</a></div>
-    <div class="r-grid">{''.join(f'<a class="r-card" href="/recipes/{r["slug"]}/"><img src="{r["image"]}" alt="{html.escape(r["title"])}" loading="lazy"><span class="r-meta">{r["prep"] + r["cook"]} min · {html.escape(r.get("cat",""))}</span><h3>{html.escape(r["title"])}</h3></a>' for r in RECIPES[:4])}</div>
-    <div class="latest-head" style="margin-top:64px"><h2>On the blog</h2><a href="/blog/">All posts</a></div>
-    <div class="b-grid">{''.join(f'<a class="b-card" href="/blog/{p["slug"]}/"><img src="{p.get("image","/images/aanchal-hero.jpg")}" alt="" loading="lazy"><h3>{html.escape(p["title"])}</h3><p>{html.escape(p["summary"])}</p></a>' for p in POSTS[:3])}</div>
-  </div>
-</section>
-
-<section style="padding:0">
-  <div class="offers">
-    <article>
-      <h3><a href="/recipes/">Recipes</a></h3>
-      <p class="meta">Weeknight meals</p>
-      <p>The South Asian dinners and toddler meals we actually make after work.</p>
-    </article>
-    <article>
-      <h3><a href="/shop/">Shop</a></h3>
-      <p class="meta">Guides &amp; my favourites</p>
-      <p>My own guides, plus the things I use at home, at the gym and with my son.</p>
-    </article>
-    <article>
-      <h3><a href="/work-with-me/">Brands</a></h3>
-      <p class="meta">UGC videos, Reels &amp; posts</p>
-      <p>Content made from the real moments in my life where your product fits.</p>
-    </article>
-  </div>
-</section>
-
-<section class="fit">
-  <div class="wrap">
-    <h2>Want to work together?</h2>
-    <p>I make UGC videos brands can run as ads, plus Reels, stories and posts on my own page.</p>
-    <p>Have a product that fits a busy family's week? I'd love to hear about it.</p>
-    <a class="btn" href="/work-with-me/">Work with me</a>
-  </div>
-</section>
-
-<section class="watch olive">
-  <div class="wrap">
-    <h2>Real moments from real life</h2>
-    <div class="watch-grid">
-      <figure>
-        <iframe src="https://www.youtube-nocookie.com/embed/{SHORT}" title="Are Indian parents toxic, or is it unintentional emotional guilt?" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <figcaption>"Are Indian parents toxic, or is it unintentional emotional guilt?" 60K views</figcaption>
-      </figure>
-      <figure>
-        {ig_embed(AVEE, "Watch the Avee Health video on Instagram")}
-        <figcaption>Paid UGC video for Avee Health, run as an ad</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-{NEWS}""" + footer(IG_SCRIPT)
+from home_story import home_html
+home = head("Nurtured by Aanchal | Working mom, real conversations",
+            "Aanchal Bathija is a working mom in Vancouver with 12M+ Reel views, talking motherhood, marriage, feminism and real routines.",
+            "/") + header("/") + home_html(IG, AVEE, RECIPES, POSTS, photo, NEWS) + footer(MOTION_JS)
 write("/", home)
 
 # ================= ABOUT =================
@@ -470,10 +279,10 @@ write("/work-with-me/", head("Work with me", "UGC videos, Reels and posts for br
 <section class="olive"><div class="wrap">
     <h2 style="font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;margin-bottom:40px">The numbers</h2>
     <dl class="stats">
-      <div><dt>4.1K</dt><dd>Instagram followers</dd></div>
-      <div><dt>61.8K</dt><dd>views on "Is marriage really patriarchal?"</dd></div>
-      <div><dt>60K</dt><dd>views on my most-watched YouTube Short</dd></div>
-      <div><dt>580+</dt><dd>posts on Instagram</dd></div>
+      <div><dt>12M+</dt><dd>total views across 382 Instagram Reels</dd></div>
+      <div><dt>3.6M</dt><dd>views on my most-watched Reel</dd></div>
+      <div><dt>23</dt><dd>Reels with more than 100K views each</dd></div>
+      <div><dt>4.2K</dt><dd>Instagram followers, growing with every viral Reel</dd></div>
     </dl>
     <p class="asof">Public counts as of November 2026.</p>
   </div></section>
