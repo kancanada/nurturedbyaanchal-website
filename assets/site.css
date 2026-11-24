@@ -262,3 +262,12 @@ section{padding:110px 0}
 .b-card p{margin:0;color:var(--muted);font-size:.98rem}
 .b-card:hover h3{text-decoration:underline}
 @media (max-width:900px){.contact-grid{grid-template-columns:1fr;gap:40px}}
+/* Never crop heads: anchor all photo crops to the top */
+.photo img,.gallery img,.mini-gal img,.b-card img,.post-img img,.portrait img{object-position:center top}
+.post-img img{max-height:none}
+.gallery img[src*="seattle-lift"]{object-position:center 85%}
+.gallery img[src*="statue-of-liberty"]{object-position:center 92%}
+.gallery img[src*="couple-mountains"]{object-position:center 78%}
+.gallery img[src*="family-beach"]{object-position:center 65%}
+.gallery img[src*="brooklyn-bridge"]{object-position:center 60%}
+.gallery img[src*="newborn-forest"]{object-position:center 35%}
