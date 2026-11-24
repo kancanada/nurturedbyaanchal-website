@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nurtured by Aanchal · Working mom, postpartum fitness, real family life</title>
+<meta name="description" content="Aanchal Bathija is a working mom in Vancouver sharing postpartum fitness, PCOD awareness, marriage and South Asian family life. UGC videos and collaborations for brands.">
+<meta property="og:title" content="Nurtured by Aanchal">
+<meta property="og:description" content="A working mom in Vancouver sharing postpartum fitness, women's health and real family life. Open to brand collaborations.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum:#2E1A2B;
+    --plum-soft:#4A2F45;
+    --haldi:#E8A31C;
+    --mehendi:#5E6B2E;
+    --rose:#F7E4E1;
+    --paper:#FFFAF7;
+    --ink:#2E1A2B;
+    --muted:#6E5868;
+    --max:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-optical-sizing:auto;font-size:1.125rem;line-height:1.6}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--haldi);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  /* Header */
+  header{background:var(--plum);color:var(--rose)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0}
+  .mark{font-weight:800;font-size:1.25rem;letter-spacing:-.01em;text-decoration:none}
+  .mark span{color:var(--haldi)}
+  nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:1rem}
+  nav a{text-decoration:none;opacity:.85;white-space:nowrap}
+  nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+
+  /* Hero */
+  .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;padding:56px 0 88px}
+  .hero h1{font-size:clamp(2.9rem,7.4vw,6.2rem);line-height:.92;letter-spacing:-.035em;font-weight:800;margin:0 0 28px;font-variation-settings:"opsz" 96}
+  .hero h1 .line{display:block}
+  .hero h1 .line:nth-child(2){color:var(--haldi)}
+  .hero p{max-width:34ch;font-size:1.2rem;margin:0 0 32px;color:#EAD3CF}
+  .actions{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-block;padding:14px 22px;border-radius:999px;font-weight:700;text-decoration:none;font-size:1rem}
+  .btn-primary{background:var(--haldi);color:var(--plum)}
+  .btn-primary:hover{background:#F2B43A}
+  .btn-ghost{border:2px solid var(--rose);color:var(--rose)}
+  .btn-ghost:hover{background:var(--rose);color:var(--plum)}
+
+  .phone{justify-self:center;width:min(300px,100%);aspect-ratio:9/16;border-radius:34px;padding:10px;background:var(--rose);box-shadow:14px 14px 0 var(--haldi)}
+  .phone iframe{width:100%;height:100%;border:0;border-radius:26px;background:var(--plum-soft)}
+  .phone-cap{font-size:.9rem;color:#D9C0BC;text-align:center;margin:40px 0 0;max-width:30ch;justify-self:center}
+  .phone-col{display:grid}
+
+  /* Sections */
+  section{padding:96px 0}
+  h2{font-size:clamp(2rem,4.4vw,3.2rem);line-height:1;letter-spacing:-.025em;font-weight:800;margin:0 0 20px}
+  .lede{max-width:56ch;color:var(--muted);margin:0 0 48px}
+
+  .topics{display:grid;grid-template-columns:repeat(2,1fr);gap:0 64px;margin:0;padding:0;list-style:none}
+  .topics li{padding:22px 0;border-top:2px solid var(--rose)}
+  .topics strong{display:block;font-size:1.35rem;letter-spacing:-.01em;margin-bottom:4px}
+  .topics span{color:var(--muted)}
+
+  /* Numbers */
+  .numbers{background:var(--rose)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin:0}
+  .stats div{margin:0}
+  .stats dt{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--plum)}
+  .stats dd{margin:10px 0 0;color:var(--muted);font-size:1rem;max-width:22ch}
+  .asof{margin:40px 0 0;font-size:.95rem;color:var(--muted)}
+
+  /* Work */
+  .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .offer{margin:0 0 36px;padding:0;list-style:none}
+  .offer li{padding:14px 0 14px 28px;position:relative;border-bottom:1px solid var(--rose)}
+  .offer li::before{content:"";position:absolute;left:0;top:24px;width:12px;height:12px;border-radius:50%;background:var(--mehendi)}
+  .offer li:first-child strong{color:var(--mehendi)}
+  .fit{color:var(--muted);font-size:1rem;max-width:52ch}
+  .proof{background:var(--plum);color:var(--rose);border-radius:28px;padding:32px}
+  .proof h3{font-size:1.5rem;margin:0 0 8px;letter-spacing:-.01em}
+  .proof p{margin:0 0 20px;color:#EAD3CF;font-size:1rem}
+  .proof .embed{background:#fff;border-radius:16px;overflow:hidden}
+  .proof .embed blockquote{margin:0!important;min-width:0!important;width:100%!important}
+  .proof a.fallback{color:var(--haldi);font-weight:700}
+
+  /* Contact */
+  .contact{background:var(--haldi);color:var(--plum)}
+  .contact h2{font-size:clamp(2.4rem,6vw,4.6rem)}
+  .contact p{max-width:48ch;margin:0 0 32px}
+  .mail{font-size:clamp(1.3rem,3.6vw,2.4rem);font-weight:800;letter-spacing:-.02em;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px;word-break:break-word}
+  .mail:hover{color:var(--plum-soft)}
+  .socials{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+  .socials a{border:2px solid var(--plum);border-radius:999px;padding:10px 18px;text-decoration:none;font-weight:700;font-size:1rem}
+  .socials a:hover{background:var(--plum);color:var(--haldi)}
+
+  footer{background:var(--plum);color:#D9C0BC;font-size:.95rem;padding:28px 0}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  @media (max-width:860px){
+    nav ul{gap:14px}
+    .mark{font-size:1.05rem}
+    nav ul{font-size:.92rem}
+    nav li.hide-sm{display:none}
+    .hero{grid-template-columns:1fr;gap:48px;padding:32px 0 72px}
+    .topics{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,1fr);gap:36px 24px}
+    .work-grid{grid-template-columns:1fr;gap:48px}
+    section{padding:72px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <a class="mark" href="#top">Nurtured by <span>Aanchal</span></a>
+      <nav aria-label="Main">
+        <ul>
+          <li class="hide-sm"><a href="#topics">What I share</a></li>
+          <li><a href="#work">Work with me</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="hero" id="top">
+      <div>
+        <h1>
+          <span class="line">Full-time job.</span>
+          <span class="line">Two-year-old.</span>
+          <span class="line">Still showing up for me.</span>
+        </h1>
+        <p>I'm Aanchal, a mom in Vancouver working in home insurance and raising my son. I share postpartum fitness, PCOD awareness, marriage and South Asian family life, as it really happens.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://www.instagram.com/nurturedbyaanchal/" rel="noopener">Follow on Instagram</a>
+          <a class="btn btn-ghost" href="#work">Work with me</a>
+        </div>
+      </div>
+      <div class="phone-col">
+        <div class="phone">
+          <iframe src="https://www.youtube-nocookie.com/embed/1Y15WDU7Q_k" title="YouTube Short: Are Indian parents toxic, or is it unintentional emotional guilt?" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="phone-cap">"Are Indian parents toxic, or is it unintentional emotional guilt?" 60K views on YouTube.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="topics">
+    <div class="wrap">
+      <h2>What I share</h2>
+      <p class="lede">Nurtured by Aanchal is for new moms, especially South Asian moms in Canada, trying to fit their health and themselves into a busy family life.</p>
+      <ul class="topics">
+        <li><strong>Postpartum and mom fitness</strong><span>Gym workouts and how I fit training around work and a toddler.</span></li>
+        <li><strong>Women's health and PCOD</strong><span>Training with my cycle, high-cramp days and PCOD awareness.</span></li>
+        <li><strong>Marriage and relationships</strong><span>Honest conversations about partnership and how relationships affect women's health.</span></li>
+        <li><strong>South Asian family life</strong><span>Diwali, weddings, Indian parenting and "log kya kahenge".</span></li>
+        <li><strong>Travel with family</strong><span>Our yearly trips, from New York to Costa Rica and Mexico.</span></li>
+        <li><strong>Mindset</strong><span>Staying motivated when the to-do list never ends.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="numbers" aria-labelledby="numbers-h">
+    <div class="wrap">
+      <h2 id="numbers-h">The numbers</h2>
+      <p class="lede">Small, real and growing. These are public counts, not estimates.</p>
+      <dl class="stats">
+        <div><dt>4.1K</dt><dd>Instagram followers</dd></div>
+        <div><dt>61.8K</dt><dd>views on "Is marriage really patriarchal?"</dd></div>
+        <div><dt>60K</dt><dd>views on my most-watched YouTube Short</dd></div>
+        <div><dt>580+</dt><dd>posts on Instagram</dd></div>
+      </dl>
+      <p class="asof">As of November 2026.</p>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap work-grid">
+      <div>
+        <h2>Work with me</h2>
+        <p class="lede">I make content in my own voice, about the moments in my life where a product actually fits.</p>
+        <ul class="offer">
+          <li><strong>UGC videos</strong> ready for your own ads, with one bonus post on my page</li>
+          <li><strong>Instagram Reels</strong> on @nurturedbyaanchal</li>
+          <li><strong>Story sets and carousel posts</strong></li>
+          <li><strong>Honest product reviews</strong></li>
+        </ul>
+        <p class="fit">A good fit: mom and baby, postpartum recovery, women's health and period care, activewear, fitness, healthy food, family travel, South Asian fashion and beauty, home organization for busy parents, and Vancouver and Canadian brands.</p>
+      </div>
+      <aside class="proof" aria-labelledby="proof-h">
+        <h3 id="proof-h">Recent work: Avee Health</h3>
+        <p>A paid UGC video for Avee Health, a BC virtual-care service. They ran it as an ad.</p>
+        <div class="embed">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DahF_vBMJ8L/" data-instgrm-version="14">
+            <a class="fallback" href="https://www.instagram.com/reel/DahF_vBMJ8L/" style="display:block;padding:20px;color:#2E1A2B">Watch the Avee Health video on Instagram</a>
+          </blockquote>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Let's make something together</h2>
+      <p>For collaborations and UGC, email me. Tell me a little about your brand and what you have in mind.</p>
+      <a class="mail" href="mailto:nurturedbyaanchal@gmail.com">nurturedbyaanchal@gmail.com</a>
+      <div class="socials">
+        <a href="https://www.instagram.com/nurturedbyaanchal/" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@NurturedByAanchal" rel="noopener">YouTube</a>
+        <a href="https://www.threads.net/@nurturedbyaanchal" rel="noopener">Threads</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Nurtured by Aanchal, Vancouver, BC</span>
+    <span>© 2026 Aanchal Bathija</span>
+  </div>
+</footer>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+</body>
+</html>
