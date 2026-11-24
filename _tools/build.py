@@ -24,6 +24,8 @@ try:
     from content import RECIPES, POSTS, SHOP
 except ImportError:
     RECIPES, POSTS, SHOP = [], [], []
+from recipe_cards import make_all as _make_cards
+_make_cards(RECIPES)
 
 
 def photo(key, alt):
@@ -295,6 +297,15 @@ home = head("Nurtured by Aanchal | Real mom life in Vancouver",
   </div>
 </section>
 
+<section class="latest">
+  <div class="wrap">
+    <div class="latest-head"><h2>From my kitchen</h2><a href="/recipes/">All recipes</a></div>
+    <div class="r-grid">{''.join(f'<a class="r-card" href="/recipes/{r["slug"]}/"><img src="{r["image"]}" alt="{html.escape(r["title"])}" loading="lazy"><span class="r-meta">{r["prep"] + r["cook"]} min · {html.escape(r.get("cat",""))}</span><h3>{html.escape(r["title"])}</h3></a>' for r in RECIPES[:4])}</div>
+    <div class="latest-head" style="margin-top:64px"><h2>On the blog</h2><a href="/blog/">All posts</a></div>
+    <div class="b-grid">{''.join(f'<a class="b-card" href="/blog/{p["slug"]}/"><img src="{p.get("image","/images/aanchal-hero.jpg")}" alt="" loading="lazy"><h3>{html.escape(p["title"])}</h3><p>{html.escape(p["summary"])}</p></a>' for p in POSTS[:3])}</div>
+  </div>
+</section>
+
 <section style="padding:0">
   <div class="offers">
     <article>
@@ -366,7 +377,21 @@ write("/about/", head("About Aanchal", "Aanchal Bathija is a working mom in Vanc
 """ + NEWS + footer())
 
 # ================= RECIPES =================
-recipes_body = link_list(RECIPES, "/recipes/") if RECIPES else """<div class="soon">
+def recipe_grid(items):
+    cats = []
+    for r in items:
+        if r.get("cat") and r["cat"] not in cats:
+            cats.append(r["cat"])
+    chips = "".join(f'<a class="chip" href="#{c.lower().replace(" ", "-")}">{html.escape(c)}</a>' for c in cats)
+    out = f'<nav class="chips" aria-label="Recipe categories">{chips}</nav>'
+    for c in cats:
+        cards = "".join(
+            f'''<a class="r-card" href="/recipes/{r["slug"]}/"><img src="{r["image"]}" alt="{html.escape(r["title"])}" loading="lazy"><span class="r-meta">{r["prep"] + r["cook"]} min · serves {r["servings"]}</span><h3>{html.escape(r["title"])}</h3></a>'''
+            for r in items if r.get("cat") == c)
+        out += f'<h2 class="r-cat" id="{c.lower().replace(" ", "-")}">{html.escape(c)}</h2><div class="r-grid">{cards}</div>'
+    return out
+
+recipes_body = recipe_grid(RECIPES) if RECIPES else """<div class="soon">
       <h3>The first recipes are on their way</h3>
       <p>Each one will have prep and cook times, ingredients, steps and the Reel where I make it.</p>
       <a class="btn" href="#newsletter">Get them by email</a>
@@ -377,7 +402,7 @@ write("/recipes/", head("Recipes", "Weeknight South Asian dinners and toddler me
 """ + NEWS + footer())
 
 # ================= BLOG =================
-blog_body = link_list(POSTS, "/blog/") if POSTS else """<div class="soon">
+blog_body = ('<div class="b-grid">' + ''.join(f'<a class="b-card" href="/blog/{p["slug"]}/"><img src="{p.get("image","/images/aanchal-hero.jpg")}" alt="" loading="lazy"><h3>{html.escape(p["title"])}</h3><p>{html.escape(p["summary"])}</p></a>' for p in POSTS) + '</div>') if POSTS else """<div class="soon">
       <h3>First posts coming soon</h3>
       <p>Our mornings, how I fit workouts around a full-time job, and family life as it really goes.</p>
       <a class="btn" href="#newsletter">Get them by email</a>
@@ -445,12 +470,19 @@ write("/work-with-me/", head("Work with me", "UGC videos, Reels and posts for br
 """ + footer(IG_SCRIPT))
 
 # ================= CONTACT =================
-write("/contact/", head("Contact", "Get in touch with Aanchal about collaborations, recipes or just to say hi.", "/contact/")
-      + header("/contact/") + page_title("Contact", "Brands, fellow moms, or just saying hi: email is the best way to reach me.")
-      + f"""<section><div class="wrap prose">
-    <p style="font-size:clamp(1.3rem,3vw,2rem);font-weight:600"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
-    <p>For collaborations, tell me a little about your brand and what you have in mind. You can also see <a href="/work-with-me/">how I work with brands</a>.</p>
-    <p>Or find me on <a href="{IG}" rel="noopener">Instagram</a>, <a href="{YT}" rel="noopener">YouTube</a> and <a href="{THREADS}" rel="noopener">Threads</a>.</p>
+write("/contact/", head("Contact", "Get in touch with Aanchal: brand collaborations, reader stories, recipes or just to say hi.", "/contact/")
+      + header("/contact/") + page_title("Let's talk", "Brands, fellow moms, or just saying hi. I read every message.")
+      + f"""<section><div class="wrap contact-grid">
+    <div>
+      <div class="c-options">
+        <a class="c-opt" href="mailto:{EMAIL}?subject=Brand%20collaboration&body=Hi%20Aanchal%2C%0A%0ABrand%3A%20%0AProduct%3A%20%0AWhat%20we%20have%20in%20mind%3A%20%0ATimeline%2Fbudget%3A%20%0A%0AThanks!"><h3>Brand collaborations</h3><p>UGC videos, Reels, recipe or blog posts, newsletter mentions. Tell me about your product and timeline.</p><span>Email about a collab</span></a>
+        <a class="c-opt" href="mailto:{EMAIL}?subject=My%20story%20for%20the%20blog"><h3>Share your story</h3><p>Replying to one of my blog posts? Send your take. With your permission, I may feature it (anonymously if you like).</p><span>Send your story</span></a>
+        <a class="c-opt" href="mailto:{EMAIL}?subject=Recipe%20question"><h3>Recipes &amp; questions</h3><p>Tried a recipe, have a question, or want me to make something? I'd love to hear.</p><span>Ask me anything</span></a>
+      </div>
+      <p class="c-direct">Or email directly: <a href="mailto:{EMAIL}">{EMAIL}</a><br>I usually reply within 2–3 working days.</p>
+      <div class="socials" style="margin-top:20px"><a href="{IG}" rel="noopener" style="border-color:var(--ink)">Instagram</a><a href="{YT}" rel="noopener" style="border-color:var(--ink)">YouTube</a><a href="{THREADS}" rel="noopener" style="border-color:var(--ink)">Threads</a></div>
+    </div>
+    <div>{photo("hero", "Aanchal Bathija")}<p class="c-loc">Based in Vancouver, BC. Working with brands across Canada and the US.</p></div>
   </div></section>
 """ + footer())
 
@@ -535,11 +567,21 @@ for r in RECIPES:
     story = "".join(f"<p>{html.escape(p)}</p>" for p in r.get("story", []))
     reel = ig_embed(r["reel"], "Watch the Reel") if r.get("reel") else ""
     aff = '<p class="note">This post has affiliate links. See the <a href="/disclosure/">disclosure</a>.</p>' if r.get("affiliate") else ""
-    write(f'/recipes/{r["slug"]}/', head(r["title"], r["summary"], f'/recipes/{r["slug"]}/', extra)
-          + header("/recipes/") + page_title(html.escape(r["title"]), html.escape(r["summary"]))
-          + f"""<section><div class="wrap prose">{aff}{story}{reel}
-    <h2>Ingredients</h2><p>Prep {r["prep"]} min · Cook {r["cook"]} min · Serves {r["servings"]}</p><ul>{ing}</ul>
-    <h2>Steps</h2><ol>{steps}</ol>
+    ing_count = len(r["ingredients"])
+    write(f'/recipes/{r["slug"]}/', head(r["title"], r["summary"], f'/recipes/{r["slug"]}/', extra + f'<meta property="og:image" content="{SITE}{r["image"]}">\n')
+          + header("/recipes/") + page_title(html.escape(r["title"]), html.escape(r["summary"])).replace('class="page-title"','class="page-title post-title"')
+          + f"""<section><div class="wrap prose post">
+    <p class="meta-line">{html.escape(r.get("cat",""))} · {r["prep"] + r["cook"]} min · serves {r["servings"]} · <a href="#recipe">Jump to recipe</a></p>
+    <figure class="post-img"><img src="{r["image"]}" alt="{html.escape(r["title"])}"></figure>
+    {aff}{story}{reel}
+    <div class="recipe-card" id="recipe">
+      <h2>{html.escape(r["title"])}</h2>
+      <dl class="r-facts"><div><dt>Prep</dt><dd>{r["prep"]} min</dd></div><div><dt>Cook</dt><dd>{r["cook"]} min</dd></div><div><dt>Total</dt><dd>{r["prep"] + r["cook"]} min</dd></div><div><dt>Serves</dt><dd>{r["servings"]}</dd></div></dl>
+      <h3>Ingredients</h3><ul class="ing">{ing}</ul>
+      <h3>Method</h3><ol class="method">{steps}</ol>
+      <p class="r-note">Made this? Tag <a href="{IG}" rel="noopener">@nurturedbyaanchal</a> on Instagram, I'd love to see it.</p>
+      <button class="btn btn-ghost-dark print-btn" onclick="window.print()">Print recipe</button>
+    </div>
   </div></section>
 """ + NEWS + footer(IG_SCRIPT))
 
