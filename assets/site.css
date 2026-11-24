@@ -186,3 +186,21 @@ section{padding:110px 0}
 @media (max-width:900px) and (min-width:600px){
   .hero-photo,.about-grid>.photo,.split-photo>.photo{max-width:480px}
 }
+
+/* Gallery */
+.gallery-sec{background:#F3F3F1}
+.gal-title{text-align:center;font-size:clamp(2.4rem,5.2vw,4rem);text-transform:uppercase;font-weight:500;margin-bottom:10px}
+.gal-sub{text-align:center;margin:0 auto 48px;max-width:46ch}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px}
+.gallery figure{margin:0;position:relative;border-radius:18px;overflow:hidden;background:var(--mist)}
+.gallery figure.g-tall{grid-row:span 2;grid-column:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery figcaption{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.92);color:var(--ink);font-size:.85rem;padding:4px 12px;border-radius:999px}
+.mini-gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:36px 0 8px}
+.mini-gal img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px}
+@media (max-width:900px){
+  .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px;gap:10px}
+}
+@media (max-width:480px){
+  .gallery{grid-auto-rows:170px}
+}

@@ -206,6 +206,26 @@ home = head("Nurtured by Aanchal | Real mom life in Vancouver",
   </div>
 </section>
 
+
+<section class="gallery-sec">
+  <div class="wrap">
+    <h2 class="gal-title">Life lately</h2>
+    <p class="gal-sub">From the bump to the toddler years, and every trip in between.</p>
+    <div class="gallery">
+      <figure class="g-tall"><img src="/images/album/seattle-lift.webp" alt="Aanchal lifting her baby son into the air on the Seattle waterfront" loading="lazy"><figcaption>Seattle waterfront</figcaption></figure>
+      <figure><img src="/images/album/pregnant-market.jpg" alt="Aanchal pregnant at a flower market" loading="lazy"><figcaption>Waiting for him</figcaption></figure>
+      <figure><img src="/images/album/newborn-forest.jpg" alt="Aanchal holding her newborn son in a forest" loading="lazy"><figcaption>First walks</figcaption></figure>
+      <figure><img src="/images/album/family-beach.jpg" alt="Aanchal, Anuj and their son at the beach" loading="lazy"><figcaption>Family beach days</figcaption></figure>
+      <figure><img src="/images/album/statue-of-liberty.jpg" alt="Aanchal with the Statue of Liberty behind her" loading="lazy"><figcaption>New York</figcaption></figure>
+      <figure><img src="/images/album/swing.jpg" alt="Aanchal and her son on a swing" loading="lazy"><figcaption>Park afternoons</figcaption></figure>
+      <figure><img src="/images/album/brooklyn-bridge.jpg" alt="Aanchal on the Brooklyn Bridge" loading="lazy"><figcaption>Brooklyn Bridge</figcaption></figure>
+      <figure><img src="/images/album/sunglasses-son.jpg" alt="Aanchal and her son in matching sunglasses" loading="lazy"><figcaption>Matching shades</figcaption></figure>
+      <figure><img src="/images/album/couple-mountains.jpg" alt="Aanchal and Anuj in the mountains" loading="lazy"><figcaption>Us two</figcaption></figure>
+    </div>
+    <p style="text-align:center;margin-top:40px"><a class="btn" href="{IG}" rel="noopener">See more on Instagram</a></p>
+  </div>
+</section>
+
 <section class="olive share">
   <div class="wrap">
     <h2>What I talk about</h2>
@@ -334,6 +354,11 @@ write("/about/", head("About Aanchal", "Aanchal Bathija is a working mom in Vanc
       <p>After my son was born, I wanted my health and my time back. I started training again around my workday, and I started sharing it on Instagram as Nurtured by Aanchal.</p>
       <p>Today I talk about postpartum and mom fitness, women's health, marriage and relationships, South Asian family life, travelling as a family and staying motivated when the to-do list never ends.</p>
       <p>I'm not an expert or a doctor. I share what works for me and my family, and I'm honest about what doesn't.</p>
+      <div class="mini-gal">
+        <img src="/images/album/family-festive.jpg" alt="Aanchal with family at a celebration" loading="lazy">
+        <img src="/images/album/lunch.jpg" alt="Aanchal and her son at lunch" loading="lazy">
+        <img src="/images/album/cozy-sweater.jpg" alt="Aanchal in a cozy sweater" loading="lazy">
+      </div>
       <h2>Find me</h2>
       <p><a href="{IG}" rel="noopener">Instagram @nurturedbyaanchal</a><br><a href="{YT}" rel="noopener">YouTube @NurturedByAanchal</a><br><a href="{THREADS}" rel="noopener">Threads</a></p>
     </div>
