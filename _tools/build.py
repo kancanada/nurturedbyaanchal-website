@@ -481,6 +481,41 @@ write("/privacy/", head("Privacy policy", "What Nurtured by Aanchal collects and
   </div></section>
 """ + footer())
 
+# ================= BLOG POST PAGES =================
+def render_blocks(blocks):
+    out = []
+    for b in blocks:
+        kind, val = b[0], b[1]
+        if kind == "p":
+            out.append(f"<p>{val}</p>")
+        elif kind == "h":
+            out.append(f"<h2>{html.escape(val)}</h2>")
+        elif kind == "quote":
+            out.append(f'<blockquote class="pull">{html.escape(val)}</blockquote>')
+        elif kind == "yt":
+            out.append(f'<div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/{val}" title="{html.escape(b[2])}" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div><p class="credit">{b[2]}</p>')
+        elif kind == "img":
+            out.append(f'<figure class="post-img"><img src="{val}" alt="{html.escape(b[2])}" loading="lazy"></figure>')
+        elif kind == "ask":
+            out.append(f'<div class="ask"><h3>{html.escape(val)}</h3><p>{b[2]}</p><p><a class="btn" href="{IG}" rel="noopener">Tell me on Instagram</a> <a class="btn btn-ghost-dark" href="mailto:{EMAIL}?subject={html.escape(val)}">Email me your take</a></p></div>')
+    return "\n    ".join(out)
+
+for p in POSTS:
+    ld = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": p["title"],
+          "description": p["summary"], "datePublished": p["date"],
+          "author": {"@type": "Person", "name": "Aanchal Bathija"},
+          "mainEntityOfPage": f'{SITE}/blog/{p["slug"]}/'}
+    if p.get("image"):
+        ld["image"] = [SITE + p["image"]]
+    extra = f'<script type="application/ld+json">{json.dumps(ld)}</script>\n'
+    write(f'/blog/{p["slug"]}/', head(p["title"], p["summary"], f'/blog/{p["slug"]}/', extra)
+          + header("/blog/") + page_title(html.escape(p["title"]), html.escape(p["summary"])).replace('class="page-title"','class="page-title post-title"')
+          + f"""<section><div class="wrap prose post">
+    <p class="meta-line">By Aanchal Bathija · {html.escape(p["date_label"])} · {p.get("read","5 min read")}</p>
+    {render_blocks(p["blocks"])}
+  </div></section>
+""" + NEWS + footer())
+
 # ================= RECIPE PAGES (Google recipe rich results) =================
 def mins(n):
     return f"PT{n}M"
