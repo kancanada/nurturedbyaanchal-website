@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://nurturedbyaanchal.com/sitemap.xml
