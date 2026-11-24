@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://nurturedbyaanchal.com/</loc></url>
+  <url><loc>https://nurturedbyaanchal.com/about/</loc></url>
   <url><loc>https://nurturedbyaanchal.com/recipes/</loc></url>
   <url><loc>https://nurturedbyaanchal.com/blog/</loc></url>
   <url><loc>https://nurturedbyaanchal.com/shop/</loc></url>
-  <url><loc>https://nurturedbyaanchal.com/about/</loc></url>
   <url><loc>https://nurturedbyaanchal.com/work-with-me/</loc></url>
+  <url><loc>https://nurturedbyaanchal.com/contact/</loc></url>
   <url><loc>https://nurturedbyaanchal.com/disclosure/</loc></url>
   <url><loc>https://nurturedbyaanchal.com/privacy/</loc></url>
 </urlset>

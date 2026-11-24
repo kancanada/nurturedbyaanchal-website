@@ -1,8 +1,8 @@
 """Builds the Nurtured by Aanchal static site.
 
 Run from the repo root:  python3 _tools/build.py
-Each page below is written to <slug>/index.html with the shared header and footer.
-Recipes and blog posts are added in _tools/content.py (see RECIPES / POSTS).
+Content (recipes, posts, shop picks) lives in _tools/content.py.
+Photos: drop them in /images with the names in PHOTOS below and rebuild; until then a placeholder shows.
 """
 import json, os, html
 from datetime import date
@@ -13,9 +13,12 @@ IG = "https://www.instagram.com/nurturedbyaanchal/"
 YT = "https://www.youtube.com/@NurturedByAanchal"
 THREADS = "https://www.threads.net/@nurturedbyaanchal"
 AVEE = "https://www.instagram.com/reel/DahF_vBMJ8L/"
+SHORT = "1Y15WDU7Q_k"
 
-NAV = [("Recipes", "/recipes/"), ("Blog", "/blog/"), ("Shop", "/shop/"),
-       ("About", "/about/"), ("Work with me", "/work-with-me/")]
+PHOTOS = {"hero": "images/aanchal-hero.jpg", "about": "images/aanchal-kitchen.jpg",
+          "family": "images/aanchal-family.jpg"}
+
+NAV = [("Home", "/"), ("About", "/about/"), ("Recipes", "/recipes/"), ("Shop", "/shop/"), ("Contact", "/contact/")]
 
 try:
     from content import RECIPES, POSTS, SHOP
@@ -23,8 +26,15 @@ except ImportError:
     RECIPES, POSTS, SHOP = [], [], []
 
 
+def photo(key, alt):
+    p = PHOTOS[key]
+    if os.path.exists(p):
+        return f'<div class="photo"><img src="/{p}" alt="{html.escape(alt)}"></div>'
+    return '<div class="photo empty" role="img" aria-label="Photo of Aanchal"><span>AB</span></div>'
+
+
 def head(title, desc, path, extra=""):
-    full = f"{title} | Nurtured by Aanchal" if path != "/" else title
+    full = title if path == "/" else f"{title} | Nurtured by Aanchal"
     return f"""<!DOCTYPE html>
 <html lang="en-CA">
 <head>
@@ -40,44 +50,37 @@ def head(title, desc, path, extra=""):
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 {extra}</head>
 <body>
 """
 
 
-def header(path, inner):
-    links = "\n".join(
-        f'<li><a href="{h}"{" aria-current=\"page\"" if path.startswith(h) else ""}>{t}</a></li>'
-        for t, h in NAV)
-    return f"""<header>
+def header(path):
+    def cur(h):
+        return ' aria-current="page"' if (path == h or (h != "/" and path.startswith(h))) else ""
+    links = "\n      ".join(f'<a href="{h}"{cur(h)}>{t}</a>' for t, h in NAV)
+    return f"""<header class="site-header">
   <div class="wrap">
-    <div class="bar">
-      <a class="mark" href="/">Nurtured by <span>Aanchal</span></a>
-      <nav aria-label="Main"><ul>
-{links}
-      </ul></nav>
-    </div>
-{inner}
+    <a class="mark" href="/">Nurtured by Aanchal</a>
+    <nav class="site-nav" aria-label="Main">
+      {links}
+      <a class="btn" href="/work-with-me/">Work with me</a>
+    </nav>
   </div>
 </header>
 <main>
 """
 
 
-def page_head(h1, p):
-    return f"""    <div class="page-head">
-      <h1>{h1}</h1>
-      <p>{p}</p>
-    </div>"""
-
-
-SIGNUP = f"""<section class="signup" id="newsletter">
+NEWS = f"""<section class="news" id="newsletter">
   <div class="wrap">
-    <h2>Get the weeknight list</h2>
-    <p>A monthly email with my PCOS-friendly dinners, toddler lunchbox ideas and whatever's working in our routine. The newsletter is starting soon. Until then, the recipes go up on Instagram first.</p>
-    <a class="btn btn-primary" href="{IG}" rel="noopener">Follow on Instagram</a>
+    <h2>Get the good stuff</h2>
+    <p>Real mom life, straight to your inbox.</p>
+    <p>Our weeknight meals, my workout routine, toddler lunchbox ideas and what's actually working in our week.</p>
+    <p>(The newsletter is starting soon. Follow along on Instagram until then.)</p>
+    <a class="btn" href="{IG}" rel="noopener">Follow on Instagram</a>
   </div>
 </section>
 """
@@ -85,16 +88,27 @@ SIGNUP = f"""<section class="signup" id="newsletter">
 
 def footer(scripts=""):
     return f"""</main>
-<footer>
+<footer class="site-footer">
   <div class="wrap">
-    <span>Nurtured by Aanchal, Vancouver, BC · <a href="mailto:{EMAIL}">{EMAIL}</a></span>
-    <span class="footlinks">
-      <a href="{IG}" rel="noopener">Instagram</a>
-      <a href="{YT}" rel="noopener">YouTube</a>
-      <a href="/disclosure/">Disclosure</a>
-      <a href="/privacy/">Privacy</a>
-      <span>© {date.today().year} Aanchal Bathija</span>
-    </span>
+    <div>
+      <h2>Nurtured by Aanchal</h2>
+      <div class="socials">
+        <a href="{IG}" rel="noopener">Instagram</a>
+        <a href="{YT}" rel="noopener">YouTube</a>
+        <a href="{THREADS}" rel="noopener">Threads</a>
+      </div>
+    </div>
+    <div>
+      <h4>Vancouver, BC</h4>
+      <p><a href="/disclosure/">Disclosure</a></p>
+      <p><a href="/privacy/">Privacy policy</a></p>
+      <p><a href="/blog/">Blog</a></p>
+    </div>
+    <div>
+      <h4><a href="/contact/">Contact</a></h4>
+      <p><a href="mailto:{EMAIL}">{EMAIL}</a></p>
+      <p>© {date.today().year} Aanchal Bathija</p>
+    </div>
   </div>
 </footer>
 {scripts}</body>
@@ -104,288 +118,373 @@ def footer(scripts=""):
 
 def write(path, body):
     out = path.strip("/")
-    os.makedirs(out or ".", exist_ok=True)
+    if out:
+        os.makedirs(out, exist_ok=True)
     with open(os.path.join(out, "index.html") if out else "index.html", "w") as f:
         f.write(body)
 
 
-# ---------- Home ----------
-def card_list(items, base):
-    if not items:
-        return None
-    lis = "\n".join(
-        f'<li><strong><a href="{base}{i["slug"]}/">{html.escape(i["title"])}</a></strong>'
-        f'<span>{html.escape(i["summary"])}</span></li>' for i in items[:6])
-    return f'<ul class="topics">\n{lis}\n</ul>'
+def page_title(h1, p):
+    return f"""<div class="page-title"><div class="wrap"><h1>{h1}</h1><p>{p}</p></div></div>\n"""
 
 
-home_hero = f"""    <div class="hero">
-      <div>
-        <h1>
-          <span class="line">Full-time job.</span>
-          <span class="line">Two-year-old.</span>
-          <span class="line">Still cooking dal.</span>
-        </h1>
-        <p>I'm Aanchal, a working mom in Vancouver with PCOS. I share PCOS-friendly South Asian meals, toddler lunchboxes and the routines that get our family through the week.</p>
-        <div class="actions">
-          <a class="btn btn-primary" href="/recipes/">See the recipes</a>
-          <a class="btn btn-ghost" href="/about/">About me</a>
-        </div>
-      </div>
-      <div class="phone-col">
-        <div class="phone">
-          <iframe src="https://www.youtube-nocookie.com/embed/1Y15WDU7Q_k" title="YouTube Short: Are Indian parents toxic, or is it unintentional emotional guilt?" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <p class="phone-cap">"Are Indian parents toxic, or is it unintentional emotional guilt?" 60K views on YouTube.</p>
-      </div>
-    </div>"""
+IG_SCRIPT = '<script async src="https://www.instagram.com/embed.js"></script>\n'
 
-latest = card_list(RECIPES, "/recipes/") or """<div class="empty">
-        <h3>The first recipes are on their way</h3>
-        <p>I'm writing up the dinners I make most often on weeknights, with times, ingredients and the Reel for each.</p>
-        <a class="btn btn-primary" href="#newsletter">Get them by email</a>
-      </div>"""
 
-home = head("Nurtured by Aanchal: PCOS-friendly South Asian meals for busy moms",
-            "PCOS-friendly South Asian recipes, toddler lunchboxes and real routines from Aanchal, a working mom in Vancouver.",
-            "/") + header("/", home_hero) + f"""
-<section class="familiar">
+def ig_embed(url, label):
+    return (f'<div class="ig-wrap"><blockquote class="instagram-media" data-instgrm-permalink="{url}" data-instgrm-version="14">'
+            f'<a href="{url}" style="display:block;padding:20px">{label}</a></blockquote></div>')
+
+
+def link_list(items, base):
+    return '<ul class="list-links">' + "\n".join(
+        f'<li><strong><a href="{base}{i["slug"]}/">{html.escape(i["title"])}</a></strong>{html.escape(i["summary"])}</li>'
+        for i in items) + "</ul>"
+
+
+# ================= HOME =================
+home = head("Nurtured by Aanchal | Real mom life in Vancouver",
+            "Aanchal Bathija is a working mom in Vancouver sharing postpartum fitness, family life, toddler meals and the routines that get her through the week.",
+            "/") + header("/") + f"""
+<section class="hero" style="padding-top:20px">
   <div class="wrap">
-    <h2>Sound familiar?</h2>
-    <ul class="statements">
-      <li><strong>Home at six, hungry toddler, no plan.</strong><span>Dinners I can make in about 30 minutes, with the dal, sabzi and rotis we already eat.</span></li>
-      <li><strong>"Healthy" recipes that don't taste like home.</strong><span>The South Asian food I grew up with, made in a way that works for me with PCOS.</span></li>
-      <li><strong>No time for yourself, let alone the gym.</strong><span>The routines that let me fit workouts around a full-time job and a two-year-old.</span></li>
-    </ul>
-  </div>
-</section>
-
-<section class="intro">
-  <div class="wrap split">
-    <div class="portrait" role="img" aria-label="Photo of Aanchal coming soon"><span>A</span></div>
-    <div>
-      <h2>Hi, I'm Aanchal.</h2>
-      <p class="lede">I work full time in home insurance, I'm raising a two-year-old with my husband Anuj, and I have PCOS. Most nights the question is the same: how do I get a good dinner on the table without it taking all evening? This is where I share what works for us.</p>
-      <a class="btn btn-primary" href="/about/">My story</a>
+    <h1 class="hero-name">Aanchal Bathija</h1>
+    <div class="hero-grid">
+      <div class="hero-left">
+        <p class="hero-sub">Nurtured by Aanchal</p>
+        <p><span class="mark-hl">Working mom, toddler mom and wife, figuring out how to look after everyone, including myself.</span></p>
+        <p class="hero-pillars">Mom life. Fitness. Family. Real routines.</p>
+        <p><a class="btn" href="{IG}" rel="noopener">Follow my journey</a></p>
+      </div>
+      <div class="hero-photo">
+        {photo("hero", "Aanchal Bathija")}
+      </div>
     </div>
   </div>
 </section>
 
-<div class="strip" aria-hidden="true"><span>Weeknight South Asian meals · Toddler lunchboxes · Working-mom routines · From a Vancouver kitchen</span></div>
-
-<section id="latest">
+<section class="statement">
   <div class="wrap">
-    <h2>Latest recipes</h2>
-    <p class="lede">Quick weeknight dal, sabzi, rotis and tiffin ideas, made the way I make them after work.</p>
-    {latest}
+    <h2>Helping new moms make time for themselves, honestly, between a full-time job, a toddler and family life.</h2>
+  </div>
+</section>
+
+<section class="olive center">
+  <div class="wrap">
+    <div class="pairs">
+      <h3>Feeling guilty for taking an hour at the gym?</h3>
+      <h3 class="answer">Not anymore.</h3>
+      <h3>Mom content that looks nothing like real life?</h3>
+      <h3 class="answer">Not here.</h3>
+      <h3>Choosing between your career, your family and yourself?</h3>
+      <h3 class="answer">Why not all three.</h3>
+    </div>
+    <a class="btn btn-light" href="{IG}" rel="noopener">Follow along</a>
   </div>
 </section>
 
 <section>
+  <div class="wrap about-grid">
+    {photo("about", "Aanchal at home")}
+    <div>
+      <p class="lead">Becoming a mom changed everything, including how much of me was left at the end of the day.</p>
+      <p>I work full time in home insurance. My husband Anuj and I are raising our two-year-old son in Vancouver, in a home full of South Asian food, family and culture.</p>
+      <p>Somewhere in the middle of all that, I decided my health and my time mattered too. So I started training again, and I started sharing it, the good days and the messy ones.</p>
+      <p>Now I share what actually works for us: workouts that fit around a workday, family meals, marriage, and the conversations South Asian families don't always have out loud.</p>
+      <h2 class="hi">Hi, I'm Aanchal.</h2>
+      <p class="creds">Working mom. Content creator. Vancouver.</p>
+      <a class="btn" href="/about/">My story</a>
+    </div>
+  </div>
+</section>
+
+<section class="feature">
   <div class="wrap">
-    <h2>Shop</h2>
-    <p class="lede">My own meal plans, and the things I actually use at home.</p>
-    <ul class="packages two">
-      <li class="feature"><h3>PCOS-friendly weeknight meal plan</h3><p>My go-to South Asian dinners for a busy work week, in one guide. Coming soon.</p><p class="cardlink"><a href="#newsletter">Hear when it's out</a></p></li>
-      <li><h3>Shop my favourites</h3><p>Kitchen, gym and toddler things from our home, in one place.</p><p class="cardlink"><a href="/shop/#favourites">See my picks</a></p></li>
+    <h3>Recent work: a paid UGC video for Avee Health, a BC virtual-care service.</h3>
+    <p>I made it from a real moment in our life: getting a doctor for my son from home instead of waiting hours in the ER. Avee Health liked it enough to run it as an ad.</p>
+    <p class="who"><a href="{AVEE}" rel="noopener">Watch the video on Instagram</a></p>
+  </div>
+</section>
+
+<section class="olive share">
+  <div class="wrap">
+    <h2>What I talk about</h2>
+    <ul>
+      <li>Postpartum &amp; mom fitness</li>
+      <li>Working-mom routines</li>
+      <li>Women's health</li>
+      <li>Marriage &amp; relationships</li>
+      <li>South Asian family life</li>
+      <li>Toddler meals</li>
+      <li>Family travel</li>
+      <li>Mindset &amp; motivation</li>
+      <li>Honest product reviews</li>
     </ul>
   </div>
 </section>
 
-{SIGNUP}
-<section>
-  <div class="wrap split">
-    <div>
-      <h2>For brands</h2>
-      <p class="lede">I make UGC videos brands run as ads, plus Reels, recipe posts and stories on my own page.</p>
-      <a class="btn btn-primary" href="/work-with-me/">Work with me</a>
+<div class="marquee" aria-label="Vancouver-based working mom">
+  <div class="marquee-track" aria-hidden="true">
+    <span>Vancouver-based 〰️ Working mom 〰️ Vancouver-based 〰️ Working mom 〰️</span>
+    <span>Vancouver-based 〰️ Working mom 〰️ Vancouver-based 〰️ Working mom 〰️</span>
+  </div>
+</div>
+
+<section class="lists">
+  <div class="wrap">
+    <div class="card">
+      <p class="label">You're juggling…</p>
+      <ul>
+        <li>A full-time job and a little one who needs you the minute you get home</li>
+        <li>Dinner, daycare pickups, laundry and bedtime, every single day</li>
+        <li>A body that changed after baby and a routine that disappeared</li>
+        <li>Family expectations, and the "log kya kahenge" voice in your head</li>
+        <li>A marriage that needs time too</li>
+      </ul>
     </div>
-    <div>
-      <h2>Say hello</h2>
-      <p class="lede">Questions about a recipe or a collaboration? Email me at <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
+    <div class="card">
+      <p class="label">You feel like…</p>
+      <ul>
+        <li>There's no time left for you</li>
+        <li>Every other mom has it figured out</li>
+        <li>Taking an hour for yourself is selfish</li>
+        <li>You've lost a bit of who you were before baby</li>
+        <li>You're doing it all, and nobody sees it</li>
+      </ul>
     </div>
   </div>
 </section>
-""" + footer()
+
+<section class="big">
+  <div class="wrap">
+    <h2>Enough of "You're so lucky you have time to work out."</h2>
+    <h2>Let's talk about how it actually happens.</h2>
+  </div>
+</section>
+
+<section class="olive">
+  <div class="wrap split-photo">
+    <div>
+      <h2>every mom's week looks different.</h2>
+      <p class="bold">Mine has a full-time job, a toddler and a workout squeezed in somewhere.</p>
+      <p>I don't have a perfect routine, and I don't pretend to. What I share is the real version: what we eat on a Tuesday, how I fit training around work, how Anuj and I make it work, and what I'm still figuring out.</p>
+      <p>If you're a new mom trying to make room for yourself, you'll find something here that helps.</p>
+      <p><a class="btn btn-light" href="/blog/">Read the blog</a></p>
+    </div>
+    {photo("family", "Aanchal with her family")}
+  </div>
+</section>
+
+<section style="padding:0">
+  <div class="offers">
+    <article>
+      <h3><a href="/recipes/">Recipes</a></h3>
+      <p class="meta">Weeknight meals</p>
+      <p>The South Asian dinners and toddler meals we actually make after work.</p>
+    </article>
+    <article>
+      <h3><a href="/shop/">Shop</a></h3>
+      <p class="meta">Guides &amp; my favourites</p>
+      <p>My own guides, plus the things I use at home, at the gym and with my son.</p>
+    </article>
+    <article>
+      <h3><a href="/work-with-me/">Brands</a></h3>
+      <p class="meta">UGC videos, Reels &amp; posts</p>
+      <p>Content made from the real moments in my life where your product fits.</p>
+    </article>
+  </div>
+</section>
+
+<section class="fit">
+  <div class="wrap">
+    <h2>Want to work together?</h2>
+    <p>I make UGC videos brands can run as ads, plus Reels, stories and posts on my own page.</p>
+    <p>Have a product that fits a busy family's week? I'd love to hear about it.</p>
+    <a class="btn" href="/work-with-me/">Work with me</a>
+  </div>
+</section>
+
+<section class="watch olive">
+  <div class="wrap">
+    <h2>Real moments from real life</h2>
+    <div class="watch-grid">
+      <figure>
+        <iframe src="https://www.youtube-nocookie.com/embed/{SHORT}" title="Are Indian parents toxic, or is it unintentional emotional guilt?" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <figcaption>"Are Indian parents toxic, or is it unintentional emotional guilt?" 60K views</figcaption>
+      </figure>
+      <figure>
+        {ig_embed(AVEE, "Watch the Avee Health video on Instagram")}
+        <figcaption>Paid UGC video for Avee Health, run as an ad</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+{NEWS}""" + footer(IG_SCRIPT)
 write("/", home)
 
-# ---------- Recipes ----------
-recipes_body = card_list(RECIPES, "/recipes/") or """<div class="empty">
+# ================= ABOUT =================
+write("/about/", head("About Aanchal", "Aanchal Bathija is a working mom in Vancouver sharing fitness, family life and real routines.", "/about/")
+      + header("/about/") + page_title("My story", "A working mom in Vancouver, trying to look after everyone, including herself.")
+      + f"""<section><div class="wrap about-grid">
+    {photo("about", "Aanchal at home")}
+    <div class="prose">
+      <p style="font-size:1.35rem;line-height:1.5">Becoming a mom changed everything, including how much of me was left at the end of the day.</p>
+      <p>I'm Aanchal. I work full time in home insurance, and my husband Anuj and I are raising our two-year-old son in Vancouver, in a home full of South Asian food, family and opinions.</p>
+      <p>After my son was born, I wanted my health and my time back. I started training again around my workday, and I started sharing it on Instagram as Nurtured by Aanchal.</p>
+      <p>Today I talk about postpartum and mom fitness, women's health, marriage and relationships, South Asian family life, travelling as a family and staying motivated when the to-do list never ends.</p>
+      <p>I'm not an expert or a doctor. I share what works for me and my family, and I'm honest about what doesn't.</p>
+      <h2>Find me</h2>
+      <p><a href="{IG}" rel="noopener">Instagram @nurturedbyaanchal</a><br><a href="{YT}" rel="noopener">YouTube @NurturedByAanchal</a><br><a href="{THREADS}" rel="noopener">Threads</a></p>
+    </div>
+  </div></section>
+""" + NEWS + footer())
+
+# ================= RECIPES =================
+recipes_body = link_list(RECIPES, "/recipes/") if RECIPES else """<div class="soon">
       <h3>The first recipes are on their way</h3>
       <p>Each one will have prep and cook times, ingredients, steps and the Reel where I make it.</p>
-      <a class="btn btn-primary" href="#newsletter">Get them by email</a>
+      <a class="btn" href="#newsletter">Get them by email</a>
     </div>"""
-write("/recipes/", head("Recipes", "PCOS-friendly South Asian recipes and toddler lunchboxes for busy weeknights.", "/recipes/")
-      + header("/recipes/", page_head("Recipes", "PCOS-friendly South Asian dinners, toddler lunchboxes and snacks that fit a weeknight after work."))
-      + f"""<section><div class="wrap">
-    <p class="note">I have PCOS and these are the meals that work for me. They're not medical advice, so check with your own doctor or dietitian about what's right for you.</p>
-    {recipes_body}
-  </div></section>
-""" + SIGNUP + footer())
+write("/recipes/", head("Recipes", "Weeknight South Asian dinners and toddler meals from a working mom in Vancouver.", "/recipes/")
+      + header("/recipes/") + page_title("Recipes", "The South Asian dinners and toddler meals we actually make after work.")
+      + f"""<section><div class="wrap">{recipes_body}</div></section>
+""" + NEWS + footer())
 
-# ---------- Blog ----------
-blog_body = card_list(POSTS, "/blog/") or """<div class="empty">
+# ================= BLOG =================
+blog_body = link_list(POSTS, "/blog/") if POSTS else """<div class="soon">
       <h3>First posts coming soon</h3>
       <p>Our mornings, how I fit workouts around a full-time job, and family life as it really goes.</p>
-      <a class="btn btn-primary" href="#newsletter">Get them by email</a>
+      <a class="btn" href="#newsletter">Get them by email</a>
     </div>"""
-write("/blog/", head("Blog", "Working-mom routines, life with PCOS and South Asian family life in Vancouver.", "/blog/")
-      + header("/blog/", page_head("Blog", "Mornings, workouts, bedtime, PCOS life and family. The parts of the week that don't fit in a Reel."))
+write("/blog/", head("Blog", "Working-mom routines, fitness and South Asian family life in Vancouver.", "/blog/")
+      + header("/blog/") + page_title("Blog", "The parts of the week that don't fit in a Reel.")
       + f"""<section><div class="wrap">{blog_body}</div></section>
-""" + SIGNUP + footer())
+""" + NEWS + footer())
 
-# ---------- Shop ----------
+# ================= SHOP =================
 if SHOP:
-    shop_list = '<ul class="topics">' + "\n".join(
-        f'<li><strong><a href="{html.escape(p["url"])}" rel="sponsored noopener">{html.escape(p["name"])}</a></strong>'
-        f'<span>{html.escape(p["why"])}</span></li>' for p in SHOP) + "</ul>"
+    favs = '<ul class="list-links">' + "\n".join(
+        f'<li><strong><a href="{html.escape(p["url"])}" rel="sponsored noopener">{html.escape(p["name"])}</a></strong>{html.escape(p["why"])}</li>'
+        for p in SHOP) + "</ul>"
 else:
-    shop_list = """<div class="empty">
-      <h3>My picks are coming soon</h3>
-      <p>I'm only adding things I actually use at home, in the kitchen, at the gym and with my son.</p>
-    </div>"""
-write("/shop/", head("Shop my favourites", "Products Aanchal uses at home, in the kitchen and at the gym.", "/shop/")
-      + header("/shop/", page_head("Shop my favourites", "Things I actually use: in the kitchen, at the gym and with a toddler."))
-      + f"""<section><div class="wrap">
-    <h2>Guides and meal plans</h2>
-    <p class="lede">My PCOS-friendly weeknight meal plan is in the works: the South Asian dinners I rely on during a busy week, in one guide.</p>
-    <div class="empty" style="margin-bottom:24px"><h3>Coming soon</h3><p>Join the list and you'll hear first.</p><a class="btn btn-primary" href="#newsletter">Get notified</a></div>
+    favs = """<div class="soon"><h3>My picks are coming soon</h3><p>I'm only adding things I actually use at home, at the gym and with my son.</p></div>"""
+write("/shop/", head("Shop", "Aanchal's guides and the products she uses at home, at the gym and with her son.", "/shop/")
+      + header("/shop/") + page_title("Shop", "My own guides, and the things I actually use.")
+      + f"""<section style="padding:0"><div class="offers">
+    <article><h3>E-books &amp; guides</h3><p class="meta">Coming soon</p><p>My first guide for busy moms is in the works. Join the list to hear first.</p><p><a class="btn" href="#newsletter">Get notified</a></p></article>
+    <article><h3>My favourites</h3><p class="meta">Home, gym &amp; toddler</p><p>The products we use every week, in one place.</p><p><a class="btn" href="#favourites">See my picks</a></p></article>
+    <article><h3>Recipes</h3><p class="meta">Free</p><p>Weeknight dinners and toddler meals from our kitchen.</p><p><a class="btn" href="/recipes/">See recipes</a></p></article>
   </div></section>
-<section id="favourites" class="numbers"><div class="wrap">
-    <h2>My favourites</h2>
+<section id="favourites"><div class="wrap">
+    <h2 style="font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;margin-bottom:24px">My favourites</h2>
     <p class="note">Some links on this page are affiliate links. If you buy through them, I may earn a small commission at no extra cost to you. I only list products I use. <a href="/disclosure/">Read the full disclosure</a>.</p>
-    {shop_list}
+    {favs}
   </div></section>
-""" + footer())
+""" + NEWS + footer())
 
-# ---------- About ----------
-write("/about/", head("About Aanchal", "Aanchal Bathija is a working mom in Vancouver sharing PCOS-friendly South Asian meals and real family routines.", "/about/")
-      + header("/about/", page_head("Hi, I'm Aanchal", "A working mom in Vancouver, cooking for a family of three and trying to look after myself too."))
-      + f"""<section><div class="wrap prose">
-    <p>I work full time in home insurance. My husband Anuj and I have a two-year-old son, and most of our evenings are about getting a good dinner on the table without it taking all night.</p>
-    <p>I also have PCOS. I'm not a doctor or a nutritionist, so I don't tell anyone what to eat. I share the South Asian meals and routines that work for me and my family, and I'm honest about what doesn't.</p>
-    <p>Nurtured by Aanchal started on Instagram, where I talk about postpartum fitness, women's health, marriage and family, and South Asian life in Canada. This site is where the recipes and routines live in full.</p>
-    <h2>Find me</h2>
-    <p><a href="{IG}" rel="noopener">Instagram @nurturedbyaanchal</a> · <a href="{YT}" rel="noopener">YouTube</a> · <a href="{THREADS}" rel="noopener">Threads</a></p>
-    <p>Email: <a href="mailto:{EMAIL}">{EMAIL}</a></p>
-  </div></section>
-""" + SIGNUP + footer())
-
-# ---------- Work with me ----------
-write("/work-with-me/", head("Work with me", "UGC videos, Reels and recipe posts for brands that fit busy South Asian moms in Canada.", "/work-with-me/")
-      + header("/work-with-me/", page_head("Work with me", "UGC videos, Reels and recipe posts for brands that fit a busy family's real week."))
-      + f"""<section><div class="wrap">
-    <h2>Packages</h2>
-    <p class="lede">Every package is built around a real moment in my week where your product fits. Rates are shared by email.</p>
-    <ul class="packages">
-      <li><h3>UGC video</h3><p>An ad-ready video for your own ads, plus one bonus post on my page.</p></li>
-      <li class="feature"><h3>Video and recipe post</h3><p>The video, plus a recipe or routine post on this site featuring your product, with the video embedded.</p></li>
-      <li><h3>Video, post and newsletter</h3><p>Everything in the video and post package, plus a mention in my monthly email.</p></li>
-    </ul>
+# ================= WORK WITH ME =================
+write("/work-with-me/", head("Work with me", "UGC videos, Reels and posts for brands that fit a busy family's week.", "/work-with-me/")
+      + header("/work-with-me/") + page_title("Work with me", "UGC videos, Reels and posts, made from the real moments in my life where your product fits.")
+      + f"""<section style="padding:0"><div class="offers">
+    <article><h3>UGC video</h3><p class="meta">For your ads</p><p>An ad-ready video for your own ads, plus one bonus post on my page.</p></article>
+    <article><h3>Video &amp; post</h3><p class="meta">Video + blog or recipe post</p><p>The video, plus a post on this site featuring your product, with the video embedded.</p></article>
+    <article><h3>Video, post &amp; newsletter</h3><p class="meta">Full package</p><p>Everything in the video and post package, plus a mention in my monthly email.</p></article>
   </div></section>
 
-<section class="numbers">
-  <div class="wrap">
-    <h2>The numbers</h2>
-    <p class="lede">Small, real and growing. These are public counts, not estimates.</p>
+<section class="olive"><div class="wrap">
+    <h2 style="font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;margin-bottom:40px">The numbers</h2>
     <dl class="stats">
       <div><dt>4.1K</dt><dd>Instagram followers</dd></div>
       <div><dt>61.8K</dt><dd>views on "Is marriage really patriarchal?"</dd></div>
       <div><dt>60K</dt><dd>views on my most-watched YouTube Short</dd></div>
       <div><dt>580+</dt><dd>posts on Instagram</dd></div>
     </dl>
-    <p class="asof">As of November 2026.</p>
-  </div>
-</section>
+    <p class="asof">Public counts as of November 2026.</p>
+  </div></section>
 
-<section>
-  <div class="wrap work-grid">
+<section><div class="wrap about-grid">
     <div>
-      <h2>A good fit</h2>
-      <p class="lede">Mom and baby, postpartum recovery, women's health and period care, activewear and fitness, healthy food and kitchen, family travel, South Asian fashion and beauty, home organization for busy parents, and Vancouver and Canadian brands.</p>
-      <p class="fit">I don't make medical or health claims about any product, and I only share things I'd actually use.</p>
-      <p><a class="btn btn-primary" href="mailto:{EMAIL}?subject=Collaboration">Email me about a collaboration</a></p>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;margin-bottom:20px">A good fit</h2>
+      <p>Mom and baby, postpartum recovery, women's health and period care, activewear and fitness, healthy food, family travel, South Asian fashion and beauty, home organization for busy parents, and Vancouver and Canadian brands.</p>
+      <p>I only share products I'd actually use, and I don't make health claims about any of them.</p>
+      <p style="margin-top:28px"><a class="btn" href="mailto:{EMAIL}?subject=Collaboration">Email me</a></p>
+      <p>Rates are shared by email.</p>
     </div>
-    <aside class="proof" aria-labelledby="proof-h">
-      <h3 id="proof-h">Recent work: Avee Health</h3>
+    <div>
+      <h3 style="font-size:1.4rem;font-weight:600;margin-bottom:10px">Recent work: Avee Health</h3>
       <p>A paid UGC video for Avee Health, a BC virtual-care service. They ran it as an ad.</p>
-      <div class="embed">
-        <blockquote class="instagram-media" data-instgrm-permalink="{AVEE}" data-instgrm-version="14">
-          <a class="fallback" href="{AVEE}" style="display:block;padding:20px;color:#2E1A2B">Watch the Avee Health video on Instagram</a>
-        </blockquote>
-      </div>
-    </aside>
-  </div>
-</section>
-""" + footer('<script async src="https://www.instagram.com/embed.js"></script>\n'))
+      {ig_embed(AVEE, "Watch the Avee Health video on Instagram")}
+    </div>
+  </div></section>
+""" + footer(IG_SCRIPT))
 
-# ---------- Disclosure ----------
+# ================= CONTACT =================
+write("/contact/", head("Contact", "Get in touch with Aanchal about collaborations, recipes or just to say hi.", "/contact/")
+      + header("/contact/") + page_title("Contact", "Brands, fellow moms, or just saying hi: email is the best way to reach me.")
+      + f"""<section><div class="wrap prose">
+    <p style="font-size:clamp(1.3rem,3vw,2rem);font-weight:600"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
+    <p>For collaborations, tell me a little about your brand and what you have in mind. You can also see <a href="/work-with-me/">how I work with brands</a>.</p>
+    <p>Or find me on <a href="{IG}" rel="noopener">Instagram</a>, <a href="{YT}" rel="noopener">YouTube</a> and <a href="{THREADS}" rel="noopener">Threads</a>.</p>
+  </div></section>
+""" + footer())
+
+# ================= DISCLOSURE =================
 write("/disclosure/", head("Disclosure", "How Nurtured by Aanchal handles affiliate links and paid partnerships.", "/disclosure/")
-      + header("/disclosure/", page_head("Disclosure", "How I handle affiliate links, gifted products and paid partnerships."))
+      + header("/disclosure/") + page_title("Disclosure", "How I handle affiliate links, gifted products and paid partnerships.")
       + """<section><div class="wrap prose">
     <h2>Affiliate links</h2>
     <p>Some links on this site are affiliate links. If you click one and buy something, I may earn a small commission. It doesn't change the price you pay. Pages with affiliate links say so near the top.</p>
     <h2>Paid partnerships and gifted products</h2>
     <p>When a brand pays me or sends me a product, I say so clearly in that post or video. I only share products I've actually used, and my opinions are my own.</p>
-    <h2>Health</h2>
-    <p>I have PCOS and share what works for me. Nothing on this site is medical advice. Please talk to your own doctor or dietitian before changing your diet, exercise or treatment.</p>
+    <h2>Not advice</h2>
+    <p>I share what works for me and my family. Nothing on this site is medical, fitness or nutrition advice. Talk to your own doctor before changing your diet, exercise or treatment.</p>
   </div></section>
 """ + footer())
 
-# ---------- Privacy ----------
+# ================= PRIVACY =================
 write("/privacy/", head("Privacy policy", "What Nurtured by Aanchal collects and how it's used.", "/privacy/")
-      + header("/privacy/", page_head("Privacy policy", "What this site collects, and what I do with it."))
+      + header("/privacy/") + page_title("Privacy policy", "What this site collects, and what I do with it.")
       + f"""<section><div class="wrap prose">
     <p>Last updated: {date.today().strftime('%B %-d, %Y')}</p>
     <h2>What I collect</h2>
-    <p>This site doesn't use cookies of its own. Embedded videos from YouTube and Instagram may set their own cookies under their own privacy policies.</p>
-    <p>When the newsletter launches, you'll be able to sign up with your email address. I'll only email you if you confirm your sign-up, every email will have an unsubscribe link, and I'll never sell or share your address.</p>
+    <p>This site doesn't set cookies of its own. Embedded videos from YouTube and Instagram may set their own cookies under their own privacy policies.</p>
+    <p>When the newsletter launches, you'll be able to sign up with your email address. I'll only email you once you confirm your sign-up, every email will have an unsubscribe link, and I'll never sell or share your address.</p>
     <p>If you email me, I keep your message so I can reply.</p>
     <h2>Questions or removal</h2>
     <p>Email <a href="mailto:{EMAIL}">{EMAIL}</a> and I'll tell you what I hold about you or delete it.</p>
   </div></section>
 """ + footer())
 
-# ---------- Recipe pages (Google recipe rich results) ----------
+# ================= RECIPE PAGES (Google recipe rich results) =================
 def mins(n):
     return f"PT{n}M"
 
 for r in RECIPES:
     ld = {"@context": "https://schema.org", "@type": "Recipe", "name": r["title"],
-          "author": {"@type": "Person", "name": "Aanchal Bathija"},
-          "description": r["summary"], "recipeCuisine": "Indian",
-          "prepTime": mins(r["prep"]), "cookTime": mins(r["cook"]),
+          "author": {"@type": "Person", "name": "Aanchal Bathija"}, "description": r["summary"],
+          "recipeCuisine": "Indian", "prepTime": mins(r["prep"]), "cookTime": mins(r["cook"]),
           "totalTime": mins(r["prep"] + r["cook"]), "recipeYield": f'{r["servings"]} servings',
           "recipeIngredient": r["ingredients"],
           "recipeInstructions": [{"@type": "HowToStep", "text": s} for s in r["steps"]]}
     if r.get("image"):
         ld["image"] = [SITE + r["image"]]
-    if r.get("reel"):
-        ld["video"] = {"@type": "VideoObject", "name": r["title"], "description": r["summary"],
-                       "contentUrl": r["reel"], "uploadDate": r.get("date", str(date.today())),
-                       "thumbnailUrl": [SITE + r["image"]] if r.get("image") else []}
     extra = f'<script type="application/ld+json">{json.dumps(ld)}</script>\n'
-    ing = "\n".join(f"<li>{html.escape(i)}</li>" for i in r["ingredients"])
-    steps = "\n".join(f"<li>{html.escape(s)}</li>" for s in r["steps"])
-    story = "\n".join(f"<p>{html.escape(p)}</p>" for p in r.get("story", []))
-    reel = (f'<blockquote class="instagram-media" data-instgrm-permalink="{r["reel"]}" data-instgrm-version="14">'
-            f'<a href="{r["reel"]}">Watch the Reel</a></blockquote>') if r.get("reel") else ""
+    ing = "".join(f"<li>{html.escape(i)}</li>" for i in r["ingredients"])
+    steps = "".join(f"<li>{html.escape(s)}</li>" for s in r["steps"])
+    story = "".join(f"<p>{html.escape(p)}</p>" for p in r.get("story", []))
+    reel = ig_embed(r["reel"], "Watch the Reel") if r.get("reel") else ""
+    aff = '<p class="note">This post has affiliate links. See the <a href="/disclosure/">disclosure</a>.</p>' if r.get("affiliate") else ""
     write(f'/recipes/{r["slug"]}/', head(r["title"], r["summary"], f'/recipes/{r["slug"]}/', extra)
-          + header("/recipes/", page_head(html.escape(r["title"]), html.escape(r["summary"])))
-          + f"""<section><div class="wrap prose">
-    <p class="note">What works for me with PCOS, not medical advice.{' This post has affiliate links, see the <a href="/disclosure/">disclosure</a>.' if r.get("affiliate") else ''}</p>
-    {story}
-    {reel}
-    <h2>Ingredients</h2>
-    <p>Prep {r["prep"]} min · Cook {r["cook"]} min · Serves {r["servings"]}</p>
-    <ul>{ing}</ul>
-    <h2>Steps</h2>
-    <ol>{steps}</ol>
+          + header("/recipes/") + page_title(html.escape(r["title"]), html.escape(r["summary"]))
+          + f"""<section><div class="wrap prose">{aff}{story}{reel}
+    <h2>Ingredients</h2><p>Prep {r["prep"]} min · Cook {r["cook"]} min · Serves {r["servings"]}</p><ul>{ing}</ul>
+    <h2>Steps</h2><ol>{steps}</ol>
   </div></section>
-""" + SIGNUP + footer('<script async src="https://www.instagram.com/embed.js"></script>\n'))
+""" + NEWS + footer(IG_SCRIPT))
 
-# ---------- Sitemap ----------
-paths = ["/", "/recipes/", "/blog/", "/shop/", "/about/", "/work-with-me/", "/disclosure/", "/privacy/"]
+# ================= SITEMAP =================
+paths = ["/", "/about/", "/recipes/", "/blog/", "/shop/", "/work-with-me/", "/contact/", "/disclosure/", "/privacy/"]
 paths += [f"/recipes/{r['slug']}/" for r in RECIPES] + [f"/blog/{p['slug']}/" for p in POSTS]
 with open("sitemap.xml", "w") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
