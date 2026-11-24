@@ -409,7 +409,7 @@ recipes_body = recipe_grid(RECIPES) if RECIPES else """<div class="soon">
 write("/recipes/", head("Recipes", "Weeknight South Asian dinners and toddler meals from a working mom in Vancouver.", "/recipes/")
       + header("/recipes/") + page_title("Recipes", "The South Asian dinners and toddler meals we actually make after work.")
       + f"""<section><div class="wrap">
-    <div class="r-intro"><img src="/images/album/dosa-with-son.jpg" alt="Aanchal and her son at lunch with dosa and parathas" loading="lazy"><p>Food in our house is simple, quick and mostly South Asian. These are the dishes I lean on during a busy work week, plus a few my toddler actually eats. When we eat out, it's usually dosa.</p></div>
+    <div class="r-intro"><img src="/images/album/aanchal-dosa-lunch.jpg" alt="Aanchal and her son at lunch with dosa and parathas" loading="lazy"><p>Food in our house is simple, quick and mostly South Asian. These are the dishes I lean on during a busy work week, plus a few my toddler actually eats. When we eat out, it's usually dosa.</p></div>
     {recipes_body}</div></section>
 """ + NEWS + footer())
 
