@@ -185,7 +185,7 @@ home = head("Nurtured by Aanchal | Real mom life in Vancouver",
 
 <section>
   <div class="wrap about-grid">
-    {photo("about", "Aanchal at home")}
+    {photo("about", "Aanchal with her son")}
     <div>
       <p class="lead">Becoming a mom changed everything, including how much of me was left at the end of the day.</p>
       <p>I work full time in home insurance. My husband Anuj and I are raising our two-year-old son in Vancouver, in a home full of South Asian food, family and culture.</p>
@@ -327,7 +327,7 @@ write("/", home)
 write("/about/", head("About Aanchal", "Aanchal Bathija is a working mom in Vancouver sharing fitness, family life and real routines.", "/about/")
       + header("/about/") + page_title("My story", "A working mom in Vancouver, trying to look after everyone, including herself.")
       + f"""<section><div class="wrap about-grid">
-    {photo("about", "Aanchal at home")}
+    {photo("about", "Aanchal with her son")}
     <div class="prose">
       <p style="font-size:1.35rem;line-height:1.5">Becoming a mom changed everything, including how much of me was left at the end of the day.</p>
       <p>I'm Aanchal. I work full time in home insurance, and my husband Anuj and I are raising our two-year-old son in Vancouver, in a home full of South Asian food, family and opinions.</p>
