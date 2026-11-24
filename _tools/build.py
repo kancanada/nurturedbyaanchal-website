@@ -410,7 +410,20 @@ write("/recipes/", head("Recipes", "Weeknight South Asian dinners and toddler me
       + header("/recipes/") + page_title("Recipes", "The South Asian dinners and toddler meals we actually make after work.")
       + f"""<section><div class="wrap">
     <div class="r-intro"><img src="/images/album/aanchal-dosa-lunch.jpg" alt="Aanchal and her son at lunch with dosa and parathas" loading="lazy"><p>Food in our house is simple, quick and mostly South Asian. These are the dishes I lean on during a busy work week, plus a few my toddler actually eats. When we eat out, it's usually dosa.</p></div>
-    {recipes_body}</div></section>
+    {recipes_body}
+    <div class="table-life">
+      <h2 class="r-cat" style="margin-top:8px">Real life at our table</h2>
+      <p class="tl-sub">Not every night is dal and roti. Here's how we actually eat, toddler and all.</p>
+      <div class="tl-grid">
+        <figure><img src="/images/album/eat-thai-son.jpg" alt="Aanchal at a Thai restaurant with her son in his stroller" loading="lazy"><figcaption>Pad thai date, with a very interested plus-one</figcaption></figure>
+        <figure><img src="/images/album/eat-skyline-son.jpg" alt="Aanchal eating at a restaurant with a city view, her son beside her" loading="lazy"><figcaption>Lunch with a view (he wanted my fries)</figcaption></figure>
+        <figure><img src="/images/album/eat-pizza.jpg" alt="Aanchal smiling with pizza and calzone" loading="lazy"><figcaption>Friday night pizza. Balance, right?</figcaption></figure>
+        <figure><img src="/images/album/eat-coconut.jpg" alt="Aanchal with fresh coconuts" loading="lazy"><figcaption>Coconut water, always</figcaption></figure>
+        <figure><img src="/images/album/eat-mexican-friend.jpg" alt="Aanchal at a Mexican restaurant with a friend" loading="lazy"><figcaption>Girls' night out</figcaption></figure>
+        <figure><img src="/images/album/eat-burger.jpg" alt="Aanchal eating at a burger restaurant" loading="lazy"><figcaption>Cheat meal, no guilt</figcaption></figure>
+      </div>
+    </div>
+</div></section>
 """ + NEWS + footer())
 
 # ================= BLOG =================
@@ -586,6 +599,7 @@ for r in RECIPES:
     <p class="meta-line">{html.escape(r.get("cat",""))} · {r["prep"] + r["cook"]} min · serves {r["servings"]} · <a href="#recipe">Jump to recipe</a></p>
     <figure class="post-img"><img src="{r["image"]}" alt="{html.escape(r["title"])}">{f'<figcaption class="credit">{r["credit"]}</figcaption>' if r.get("credit") else ""}</figure>
     {aff}{story}{reel}
+    <aside class="from-a"><img src="/images/aanchal-kitchen.jpg" alt="Aanchal with her son"><div><strong>A note from me</strong><p>I cook for a full-time job, a toddler and a husband who's always hungry, so everything here is tested on real weeknights. Make it your own, and tell me how it went.</p></div></aside>
     <div class="recipe-card" id="recipe">
       <h2>{html.escape(r["title"])}</h2>
       <dl class="r-facts"><div><dt>Prep</dt><dd>{r["prep"]} min</dd></div><div><dt>Cook</dt><dd>{r["cook"]} min</dd></div><div><dt>Total</dt><dd>{r["prep"] + r["cook"]} min</dd></div><div><dt>Serves</dt><dd>{r["servings"]}</dd></div></dl>
