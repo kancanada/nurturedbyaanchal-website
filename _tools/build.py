@@ -18,7 +18,7 @@ SHORT = "1Y15WDU7Q_k"
 PHOTOS = {"hero": "images/aanchal-hero.jpg", "about": "images/aanchal-kitchen.jpg",
           "family": "images/aanchal-family.jpg"}
 
-NAV = [("Home", "/"), ("About", "/about/"), ("Recipes", "/recipes/"), ("Shop", "/shop/"), ("Contact", "/contact/")]
+NAV = [("Home", "/"), ("About", "/about/"), ("Recipes", "/recipes/"), ("Deals", "/deals/"), ("Shop", "/shop/"), ("Contact", "/contact/")]
 
 try:
     from content import RECIPES, POSTS, SHOP
@@ -257,13 +257,34 @@ write("/shop/", head("Shop", "Aanchal's guides and the products she uses at home
       + header("/shop/") + page_title("Shop", "My own guides, and the things I actually use.")
       + f"""<section style="padding:0"><div class="offers">
     <article><h3>The Working Mom's Weeknight Dinner Plan</h3><p class="meta">Free PDF guide, 12 pages</p><p>One week of South Asian dinners that fit around a full-time job and a toddler: the plan, a shopping list and 8 recipes.</p><p><a class="btn" href="/guides/weeknight-dinner-plan.pdf" download>Download free</a></p></article>
-    <article><h3>Brands I've worked with</h3><p class="meta">Paid partnerships</p><p>The brands I've made content for, always disclosed.</p><p><a class="btn" href="#favourites">See partners</a></p></article>
+    <article><h3>Deals</h3><p class="meta">Member discounts</p><p>Discounts on Canadian brands for moms, toddlers and busy weeks.</p><p><a class="btn" href="/deals/">See deals</a></p></article>
     <article><h3>Recipes</h3><p class="meta">Free</p><p>Weeknight dinners and toddler meals from our kitchen.</p><p><a class="btn" href="/recipes/">See recipes</a></p></article>
   </div></section>
 <section id="favourites"><div class="wrap">
     <h2 style="font-size:clamp(2rem,4vw,3rem);margin-bottom:24px">Brands I've worked with</h2>
     <p class="note">Paid partnerships are always labelled. <a href="/disclosure/">Read the full disclosure</a>.</p>
     {favs}
+  </div></section>
+""" + NEWS + footer())
+
+# ================= DEALS =================
+from deals import DEALS, GROUPS
+def deal_card(d):
+    name, grp, city, what, site, prog, deal = d
+    badge = f'<span class="d-badge on">{html.escape(deal)}</span>' if deal else '<span class="d-badge">Deal coming</span>'
+    return f'''<article class="deal"><div class="d-top">{badge}<span class="d-city">{html.escape(city)}</span></div>
+      <h3>{html.escape(name)}</h3><p>{html.escape(what)}</p>
+      <a class="btn btn-ghost-dark" href="{site}" rel="sponsored noopener" target="_blank">Shop {html.escape(name)}</a></article>'''
+sections = "".join(
+    f'<h2 class="d-group">{t}</h2><div class="deal-grid">' + "".join(deal_card(d) for d in DEALS if d[1] == g) + "</div>"
+    for g, t in GROUPS if any(d[1] == g for d in DEALS))
+write("/deals/", head("Deals for busy families", "Discounts on Canadian brands for moms, toddlers and busy families, curated by Aanchal Bathija.", "/deals/")
+      + header("/deals/") + page_title("Deals", "Discounts on brands for moms, toddlers and busy weeks. Mostly Canadian, many local to BC.")
+      + f"""<section><div class="wrap">
+    <div class="d-unlock"><div><h2>Unlock member deals</h2><p>Codes for these brands go to my email list first. Join free and I'll send them as each one goes live.</p></div>
+      <a class="btn" href="mailto:{EMAIL}?subject=Subscribe%20-%20deals&amp;body=Hi%20Aanchal%2C%20please%20send%20me%20your%20member%20deals.">Unlock deals by email</a></div>
+    <p class="note">How this works: I earn a small commission when you buy through some of these links, at no extra cost to you. Paid partnerships are always labelled. <a href="/disclosure/">Full disclosure</a>.</p>
+    {sections}
   </div></section>
 """ + NEWS + footer())
 
@@ -449,7 +470,7 @@ for r in RECIPES:
 """ + NEWS + footer(IG_SCRIPT))
 
 # ================= SITEMAP =================
-paths = ["/", "/about/", "/recipes/", "/blog/", "/shop/", "/work-with-me/", "/contact/", "/disclosure/", "/privacy/"]
+paths = ["/", "/deals/", "/about/", "/recipes/", "/blog/", "/shop/", "/work-with-me/", "/contact/", "/disclosure/", "/privacy/"]
 paths += [f"/recipes/{r['slug']}/" for r in RECIPES] + [f"/blog/{p['slug']}/" for p in POSTS]
 with open("sitemap.xml", "w") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')

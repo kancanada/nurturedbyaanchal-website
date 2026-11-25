@@ -375,3 +375,17 @@ section{padding:110px 0}
 @media print{header,footer,.news,.jump,.rp-toc,.from-a,.r-grid{display:none!important}}
 .partner{background:#f6f8ee;border-radius:18px;padding:28px 30px;max-width:640px}
 .partner h3{margin:0 0 8px;color:#666640}
+
+/* ===== Deals ===== */
+.d-unlock{display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#2f3a28;color:#fff;border-radius:20px;padding:28px 32px;margin-bottom:18px}
+.d-unlock h2{color:#EEF5C2;margin:0 0 6px}
+.d-unlock p{margin:0;max-width:34em}
+.d-group{margin:44px 0 16px;font-size:clamp(1.5rem,3vw,2.1rem)}
+.deal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.deal{border:1px solid #dfe5e9;border-radius:16px;padding:20px;display:flex;flex-direction:column;background:#fff}
+.deal h3{margin:12px 0 6px;font-size:1.2rem}
+.deal p{flex:1;margin:0 0 16px;font-size:.95rem}
+.d-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.d-badge{white-space:nowrap;font-size:.78rem;font-weight:600;padding:5px 10px;border-radius:999px;background:#f0f2f4;color:#5F7A8B}
+.d-badge.on{background:#EEF5C2;color:#666640}
+.d-city{font-size:.8rem;color:#777}
