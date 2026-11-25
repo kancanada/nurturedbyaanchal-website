@@ -13,7 +13,6 @@ REELS = [
 def reel_wall(IG):
     cards = "".join(
         f'''<a class="reel" href="https://www.instagram.com/reel/{rid}/" rel="noopener">
-          <span class="reel-img"><img src="/images/reels/{rid}.jpg" alt="Reel: {html.escape(t)}" loading="lazy"></span>
           <span class="reel-views"><b>{v}</b> views</span>
           <span class="reel-t">{html.escape(t)}</span>
           <span class="reel-c">{html.escape(c)}</span>
@@ -58,11 +57,11 @@ def home_html(IG, AVEE, RECIPES, POSTS, photo, NEWS):
       <div class="ch-text"><span class="ch-no">02</span><h2>Then he arrived, and everything changed.</h2><p>Including how much of me was left at the end of the day. Postpartum is an identity shift nobody prepares you for. I decided my health and my time mattered too.</p></div>
     </article>
     <article class="chapter reveal">
-      <div class="ch-img"><img src="/images/album/seattle-lift.webp" alt="Aanchal lifting her son into the air on the Seattle waterfront" loading="lazy"></div>
+      <div class="ch-img"><img src="/images/aanchal-kitchen.jpg" alt="Aanchal holding her son under festive lights" loading="lazy"></div>
       <div class="ch-text"><span class="ch-no">03</span><h2>Now: the juggle.</h2><p>Home insurance by day. A two-year-old by evening. Workouts squeezed in somewhere. A husband, Anuj, who's in it with me. It isn't perfect, and I don't pretend it is.</p></div>
     </article>
     <article class="chapter flip reveal">
-      <div class="ch-img"><img src="/images/reels/DcSKWwvsHY3.jpg" alt="Aanchal reacting to a podcast clip about feminism" loading="lazy"></div>
+      <div class="ch-img"><img src="/images/album/lunch.jpg" alt="Aanchal smiling" loading="lazy"></div>
       <div class="ch-text"><span class="ch-no">04</span><h2>So I started talking.</h2><p>About mom guilt, marriage, money, <em>log kya kahenge</em>, and the feminism nobody explains properly. It turns out millions of women were thinking the same thing.</p></div>
     </article>
   </div>
@@ -90,7 +89,7 @@ def home_html(IG, AVEE, RECIPES, POSTS, photo, NEWS):
 <section class="kitchen">
   <div class="wrap">
     <div class="kitchen-grid">
-      <div class="reveal"><img class="k-photo" src="/images/album/aanchal-dosa-lunch.jpg" alt="Aanchal and her son at lunch with dosa" loading="lazy"></div>
+      <div class="reveal"><img class="k-photo" src="/images/album/eat-pizza.jpg" alt="Aanchal smiling over pizza night" loading="lazy"></div>
       <div class="reveal"><h2>And yes, we still have to eat.</h2><p>Quick South Asian weeknight dinners and toddler meals that survive real life.</p><a class="btn" href="/recipes/">See the recipes</a></div>
     </div>
     <div class="r-grid" style="margin-top:44px">{rec}</div>

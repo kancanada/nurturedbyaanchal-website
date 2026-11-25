@@ -218,18 +218,15 @@ recipes_body = recipe_grid(RECIPES) if RECIPES else """<div class="soon">
 write("/recipes/", head("Recipes", "Weeknight South Asian dinners and toddler meals from a working mom in Vancouver.", "/recipes/")
       + header("/recipes/") + page_title("Recipes", "The South Asian dinners and toddler meals we actually make after work.")
       + f"""<section><div class="wrap">
-    <div class="r-intro"><img src="/images/album/aanchal-dosa-lunch.jpg" alt="Aanchal and her son at lunch with dosa and parathas" loading="lazy"><p>Food in our house is simple, quick and mostly South Asian. These are the dishes I lean on during a busy work week, plus a few my toddler actually eats. When we eat out, it's usually dosa.</p></div>
+    <div class="r-intro"><img src="/images/album/lunch.jpg" alt="Aanchal smiling at lunch" loading="lazy"><p>Food in our house is simple, quick and mostly South Asian. These are the dishes I lean on during a busy work week, plus a few my toddler actually eats. When we eat out, it's usually dosa.</p></div>
     {recipes_body}
     <div class="table-life">
       <h2 class="r-cat" style="margin-top:8px">Real life at our table</h2>
       <p class="tl-sub">Not every night is dal and roti. Here's how we actually eat, toddler and all.</p>
       <div class="tl-grid">
-        <figure><img src="/images/album/eat-thai-son.jpg" alt="Aanchal at a Thai restaurant with her son in his stroller" loading="lazy"><figcaption>Pad thai date, with a very interested plus-one</figcaption></figure>
-        <figure><img src="/images/album/eat-skyline-son.jpg" alt="Aanchal eating at a restaurant with a city view, her son beside her" loading="lazy"><figcaption>Lunch with a view (he wanted my fries)</figcaption></figure>
         <figure><img src="/images/album/eat-pizza.jpg" alt="Aanchal smiling with pizza and calzone" loading="lazy"><figcaption>Friday night pizza. Balance, right?</figcaption></figure>
         <figure><img src="/images/album/eat-coconut.jpg" alt="Aanchal with fresh coconuts" loading="lazy"><figcaption>Coconut water, always</figcaption></figure>
-        <figure><img src="/images/album/eat-mexican-friend.jpg" alt="Aanchal at a Mexican restaurant with a friend" loading="lazy"><figcaption>Girls' night out</figcaption></figure>
-        <figure><img src="/images/album/eat-burger.jpg" alt="Aanchal eating at a burger restaurant" loading="lazy"><figcaption>Cheat meal, no guilt</figcaption></figure>
+        <figure><img src="/images/album/cozy-sweater.jpg" alt="Aanchal smiling at brunch" loading="lazy"><figcaption>A slow weekend brunch</figcaption></figure>
       </div>
     </div>
 </div></section>
