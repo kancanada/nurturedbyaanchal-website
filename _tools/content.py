@@ -201,7 +201,7 @@ POSTS = [
         "date": "2026-11-24",
         "date_label": "November 24, 2026",
         "read": "6 min read",
-        "image": "/images/aanchal-kitchen.jpg",
+        "image": "/images/album/lunch.jpg",
         "blocks": [
             ("p", "A clip from Raj Shamani's <em>Figuring Out</em> podcast has been all over my feed. His guest, author and leadership coach Sandeep Das, says feminism may be coming to an end, and that a lot of women are quietly choosing the \"old\" life again: marriage, kids, a smaller job, home first."),
             ("p", "I'm a mom of a two-year-old. I work full time in home insurance. I go to the gym when I can squeeze it in. So this one hit close to home, and I had to sit down and write about it."),

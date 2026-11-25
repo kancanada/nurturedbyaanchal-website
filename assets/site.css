@@ -461,3 +461,16 @@ p:has(> .btn + .btn),.s-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:ce
 
 .rp .jump .btn{font-family:inherit;font-size:.85rem;line-height:1.35;border:2px solid transparent}
 .rp .jump .btn-ghost-dark{border-color:#2f2f1e}
+/* Section headings: one style site-wide */
+.latest-head{align-items:flex-end;flex-wrap:wrap}
+.latest-head h2,.r-cat,.d-group,.lists h2,#favourites h2{text-transform:none!important;font-weight:600;letter-spacing:-.02em}
+.latest-head a{font-size:.95rem;white-space:nowrap}
+@media (max-width:900px){
+  .b-card img,.k-photo{aspect-ratio:4/5}
+  .latest-head h2{font-size:1.9rem}
+}
+.news h2,.prose h2,.offers h3,.watch h2{text-transform:none;letter-spacing:-.02em}
+.news h2{font-size:clamp(2rem,4.4vw,3.2rem)}
+.prose h2{font-size:clamp(1.5rem,2.8vw,2rem);font-weight:600}
+.offers h3{font-size:1.4rem}
+.kitchen h2,.ch-text h2,.reels-head h2,.brands h2,.d-unlock h2{font-weight:600;letter-spacing:-.02em}

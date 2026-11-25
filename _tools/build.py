@@ -138,7 +138,18 @@ def footer(scripts=""):
 """
 
 
+FOCAL = json.load(open(os.path.join(os.path.dirname(__file__), "focal.json")))
+def _focal(body):
+    import re as _re
+    def fix(m):
+        tag = m.group(0); src = _re.search(r'src="([^"?]+)', tag)
+        if src and src.group(1) in FOCAL and "object-position" not in tag:
+            return tag.replace("<img ", f'<img style="object-position:{FOCAL[src.group(1)]}" ', 1)
+        return tag
+    return _re.sub(r"<img [^>]*>", fix, body)
+
 def write(path, body):
+    body = _focal(body)
     out = path.strip("/")
     if out:
         os.makedirs(out, exist_ok=True)
