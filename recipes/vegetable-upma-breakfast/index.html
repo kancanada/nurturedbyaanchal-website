@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=60f65a29">
+<link rel="stylesheet" href="/assets/site.css?v=2d4fa8d0">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Recipe", "name": "10-minute vegetable upma", "author": {"@type": "Person", "name": "Aanchal Bathija"}, "description": "A warm, filling South Indian breakfast from semolina and veggies. Faster than toast once you've made it twice.", "recipeCuisine": "Indian", "prepTime": "PT5M", "cookTime": "PT12M", "totalTime": "PT17M", "recipeYield": "3 servings", "recipeIngredient": ["1 cup fine semolina (sooji / rava)", "1 tbsp oil or ghee", "\u00bd tsp mustard seeds", "1 tsp urad dal (optional)", "8\u201310 curry leaves", "1 small onion, chopped", "1 tsp grated ginger", "\u00bd cup mixed vegetables (peas, carrot, beans)", "2\u00bd cups hot water", "1 tsp salt", "Lemon and coriander to finish"], "recipeInstructions": [{"@type": "HowToStep", "text": "Dry-roast the semolina in a pan on medium heat for 4\u20135 minutes until it smells nutty. Set aside."}, {"@type": "HowToStep", "text": "Heat oil, add mustard seeds and let them pop. Add urad dal and curry leaves."}, {"@type": "HowToStep", "text": "Add onion, ginger and vegetables and cook for 3 minutes."}, {"@type": "HowToStep", "text": "Pour in the hot water and salt and bring to a boil."}, {"@type": "HowToStep", "text": "Lower the heat and add the semolina slowly, stirring constantly, so no lumps form."}, {"@type": "HowToStep", "text": "Cover and cook on low for 2 minutes. Fluff up, squeeze in lemon and add coriander."}], "image": ["https://images.unsplash.com/photo-1630409349197-b733a524b24e?w=1200&h=900&fit=crop&crop=entropy&q=80&auto=format"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why is my upma lumpy?", "acceptedAnswer": {"@type": "Answer", "text": "The rava went in too fast or the water wasn't boiling. Add it in a slow stream while stirring."}}, {"@type": "Question", "name": "Can I roast rava in advance?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Roast a big batch, cool it and store it in a jar for up to a month."}}, {"@type": "Question", "name": "Is upma good for toddlers?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Make it a little softer with extra water and leave out the green chilli."}}]}</script>
 <meta property="og:image" content="https://images.unsplash.com/photo-1630409349197-b733a524b24e?w=1200&h=900&fit=crop&crop=entropy&q=80&auto=format">
@@ -23,7 +23,8 @@
 <header class="site-header">
   <div class="wrap">
     <a class="mark" href="/">Nurtured by Aanchal</a>
-    <nav class="site-nav" aria-label="Main">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" onclick="var o=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',!o);document.body.classList.toggle('nav-open',!o)"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">Menu</span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
       <a href="/">Home</a>
       <a href="/about/">About</a>
       <a href="/recipes/" aria-current="page">Recipes</a>

@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=60f65a29">
+<link rel="stylesheet" href="/assets/site.css?v=2d4fa8d0">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Recipe", "name": "One-pot vegetable khichdi (toddler-approved)", "author": {"@type": "Person", "name": "Aanchal Bathija"}, "description": "Rice, dal and whatever vegetables are in the fridge, all in one pot. Soft enough for toddlers, cosy enough for the whole family.", "recipeCuisine": "Indian", "prepTime": "PT10M", "cookTime": "PT25M", "totalTime": "PT35M", "recipeYield": "4 servings", "recipeIngredient": ["\u00bd cup rice (any short or basmati)", "\u00bd cup yellow moong dal", "1 tbsp ghee", "1 tsp cumin seeds", "Pinch of hing", "1 tsp grated ginger", "1\u00bd cups chopped vegetables (carrot, peas, beans, pumpkin, spinach)", "\u00bd tsp turmeric", "1 tsp salt (less for toddlers)", "4\u20135 cups water"], "recipeInstructions": [{"@type": "HowToStep", "text": "Rinse the rice and dal together until the water runs clear. Soak for 10 minutes if you have time."}, {"@type": "HowToStep", "text": "Heat ghee in a pressure cooker or heavy pot. Add cumin, hing and ginger and stir for 30 seconds."}, {"@type": "HowToStep", "text": "Add the vegetables and stir for 2 minutes."}, {"@type": "HowToStep", "text": "Add the drained rice and dal, turmeric, salt and water."}, {"@type": "HowToStep", "text": "Pressure cook for 4 whistles, or simmer covered for 25\u201330 minutes, stirring now and then, until very soft."}, {"@type": "HowToStep", "text": "Mash lightly with the back of a spoon. Add hot water for a looser texture. Top with a little ghee before serving."}], "image": ["https://images.unsplash.com/photo-1630409351211-d62ab2d24da4?w=1200&h=900&fit=crop&crop=entropy&q=80&auto=format"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What age can babies eat khichdi?", "acceptedAnswer": {"@type": "Answer", "text": "Many families start with a smooth, unsalted khichdi once a baby is on solids. Check with your paediatrician about your own child."}}, {"@type": "Question", "name": "Can I add spinach?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Stir in a handful of chopped spinach for the last 5 minutes of cooking."}}, {"@type": "Question", "name": "Why is my khichdi too thick?", "acceptedAnswer": {"@type": "Answer", "text": "It firms up as it cools. Stir in hot water a little at a time until it's the texture you want."}}]}</script>
 <meta property="og:image" content="https://images.unsplash.com/photo-1630409351211-d62ab2d24da4?w=1200&h=900&fit=crop&crop=entropy&q=80&auto=format">
@@ -23,7 +23,8 @@
 <header class="site-header">
   <div class="wrap">
     <a class="mark" href="/">Nurtured by Aanchal</a>
-    <nav class="site-nav" aria-label="Main">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" onclick="var o=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',!o);document.body.classList.toggle('nav-open',!o)"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">Menu</span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
       <a href="/">Home</a>
       <a href="/about/">About</a>
       <a href="/recipes/" aria-current="page">Recipes</a>

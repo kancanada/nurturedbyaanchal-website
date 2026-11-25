@@ -76,7 +76,8 @@ def header(path):
     return f"""<header class="site-header">
   <div class="wrap">
     <a class="mark" href="/">Nurtured by Aanchal</a>
-    <nav class="site-nav" aria-label="Main">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" onclick="var o=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',!o);document.body.classList.toggle('nav-open',!o)"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">Menu</span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
       {links}
       <a class="btn" href="/work-with-me/">Work with me</a>
     </nav>

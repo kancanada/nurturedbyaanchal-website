@@ -14,13 +14,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=60f65a29">
+<link rel="stylesheet" href="/assets/site.css?v=2d4fa8d0">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
     <a class="mark" href="/">Nurtured by Aanchal</a>
-    <nav class="site-nav" aria-label="Main">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" onclick="var o=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',!o);document.body.classList.toggle('nav-open',!o)"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">Menu</span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
       <a href="/" aria-current="page">Home</a>
       <a href="/about/">About</a>
       <a href="/recipes/">Recipes</a>
@@ -36,7 +37,6 @@
 <section class="s-hero">
   <div class="wrap s-hero-grid">
     <div class="s-hero-text reveal">
-      <p class="kicker">Nurtured by Aanchal</p>
       <h1>Strong mama.<br>Soft heart.<br><em>Loud opinions.</em></h1>
       <p class="s-lede">I'm Aanchal: a working mom in Vancouver, raising a toddler, lifting weights and saying the things South Asian women are told to keep quiet.</p>
       <div class="s-proof">

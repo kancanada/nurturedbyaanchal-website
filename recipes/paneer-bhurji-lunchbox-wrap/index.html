@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=60f65a29">
+<link rel="stylesheet" href="/assets/site.css?v=2d4fa8d0">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Recipe", "name": "Paneer bhurji lunchbox wraps", "author": {"@type": "Person", "name": "Aanchal Bathija"}, "description": "Scrambled spiced paneer rolled into a roti. Ready in 15 minutes and travels well in a lunchbox.", "recipeCuisine": "Indian", "prepTime": "PT5M", "cookTime": "PT10M", "totalTime": "PT15M", "recipeYield": "3 servings", "recipeIngredient": ["200 g paneer, crumbled", "1 tbsp oil or butter", "\u00bd tsp cumin seeds", "1 small onion, finely chopped", "1 small tomato, finely chopped", "\u00bc cup finely chopped capsicum (bell pepper)", "\u00bc tsp turmeric", "\u00bd tsp chilli powder", "\u00bd tsp salt", "\u00bc tsp garam masala", "Coriander, chopped", "3 rotis or tortillas", "Green chutney or ketchup (optional)"], "recipeInstructions": [{"@type": "HowToStep", "text": "Heat oil in a pan. Add cumin, then onion, and cook for 3 minutes."}, {"@type": "HowToStep", "text": "Add tomato and capsicum and cook until soft."}, {"@type": "HowToStep", "text": "Add turmeric, chilli powder and salt, then the crumbled paneer. Stir for 2\u20133 minutes. Don't overcook or the paneer gets rubbery."}, {"@type": "HowToStep", "text": "Finish with garam masala and coriander."}, {"@type": "HowToStep", "text": "Warm the rotis, spread a little chutney, add the bhurji and roll up tightly. Wrap in foil for the lunchbox."}], "image": ["https://images.unsplash.com/photo-1736239093375-34f0a2f33c7d?w=1200&h=900&fit=crop&crop=entropy&q=80&auto=format"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I make the filling ahead?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It keeps 2 days in the fridge. Warm it gently before wrapping."}}, {"@type": "Question", "name": "Is homemade paneer better?", "acceptedAnswer": {"@type": "Answer", "text": "It's softer, but store-bought works well. Soak it in hot water for 10 minutes first to soften it."}}, {"@type": "Question", "name": "Is it toddler-friendly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with the green chilli left out. Serve the bhurji on its own or in small pieces of roti."}}]}</script>
 <meta property="og:image" content="https://images.unsplash.com/photo-1736239093375-34f0a2f33c7d?w=1200&h=900&fit=crop&crop=entropy&q=80&auto=format">
@@ -23,7 +23,8 @@
 <header class="site-header">
   <div class="wrap">
     <a class="mark" href="/">Nurtured by Aanchal</a>
-    <nav class="site-nav" aria-label="Main">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" onclick="var o=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',!o);document.body.classList.toggle('nav-open',!o)"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">Menu</span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
       <a href="/">Home</a>
       <a href="/about/">About</a>
       <a href="/recipes/" aria-current="page">Recipes</a>

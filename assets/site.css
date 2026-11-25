@@ -393,3 +393,68 @@ section{padding:110px 0}
 .b-card img{object-position:center top}
 /* One frame style for every photo */
 .ch-img img,.k-photo,.r-intro img,.tl-grid img,.b-card img,.r-card img,.post-img img,.reel-img,.from-a img,.c-photo img{border-radius:18px}
+
+/* ===== Polish pass: header, hero, buttons ===== */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid rgba(47,47,30,.08);padding:14px 0}
+.site-header .wrap{flex-wrap:nowrap}
+.mark{font-size:1.25rem;font-weight:600;color:#2f2f1e;white-space:nowrap}
+.site-nav{flex-wrap:nowrap;gap:28px}
+.site-nav a{font-size:.95rem;white-space:nowrap}
+.site-nav .btn{padding:11px 20px;font-size:.82rem;letter-spacing:.04em}
+.nav-toggle{display:none}
+.btn{font-size:.85rem;letter-spacing:.04em;padding:14px 28px}
+p:has(> .btn + .btn),.s-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.s-ctas .btn{margin:0}
+.s-hero{padding:56px 0 80px}
+.s-hero h1{font-weight:600;letter-spacing:-.03em}
+.s-hero-photo .photo{border-radius:240px 240px 22px 22px;background:transparent}
+.s-hero-photo img{border-radius:0;aspect-ratio:auto;height:100%}
+.s-proof{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px 40px}
+
+@media (max-width:900px){
+  .nav-toggle{display:inline-flex;align-items:center;gap:10px;background:none;border:1.5px solid #2f2f1e;border-radius:999px;padding:9px 16px;font:inherit;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#2f2f1e;cursor:pointer}
+  .nav-toggle-bars,.nav-toggle-bars::before{display:block;width:16px;height:1.5px;background:currentColor;position:relative;transition:transform .2s}
+  .nav-toggle-bars::before{content:"";position:absolute;top:5px}
+  .nav-toggle-bars{transform:translateY(-2.5px)}
+  .nav-open .nav-toggle-bars{transform:rotate(45deg)}
+  .nav-open .nav-toggle-bars::before{transform:translateY(-5px) rotate(-90deg)}
+  .site-nav{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;flex-direction:column;align-items:stretch;gap:0;padding:8px 22px 22px;border-bottom:1px solid rgba(47,47,30,.1);box-shadow:0 20px 30px -20px rgba(47,47,30,.25)}
+  .nav-open .site-nav{display:flex}
+  .site-nav a{font-size:1.15rem;padding:14px 0;border-bottom:1px solid rgba(47,47,30,.08)}
+  .site-nav a[aria-current="page"]{border-bottom-color:rgba(47,47,30,.08);color:#666640;font-weight:600}
+  .site-nav .btn{margin-top:16px;padding:15px;font-size:.9rem;border-bottom:0}
+  .s-hero{padding:24px 0 48px}
+  .s-hero h1{font-size:clamp(2.4rem,11vw,3.4rem);margin-bottom:16px}
+  .s-lede{font-size:1.05rem}
+  .s-hero-photo .photo{border-radius:180px 180px 20px 20px;aspect-ratio:4/5}
+  .s-proof{grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+  .s-proof b{font-size:1.7rem}
+  .s-proof span{font-size:.78rem;line-height:1.3;display:block;margin-top:4px}
+  .scroll-cue{display:none}
+  p:has(> .btn + .btn),.s-ctas{flex-direction:column;align-items:stretch}
+  .btn{padding:15px 22px}
+}
+.s-hero h1{font-size:clamp(2.6rem,4.9vw,4.4rem)}
+.s-hero-grid{grid-template-columns:1.15fr .85fr}
+@media (max-width:900px){
+  .s-hero h1{font-size:clamp(2.4rem,11vw,3.4rem)}
+  .chapters{padding:48px 0 10px}
+  .chapter{gap:20px}
+}
+/* Consistent page titles + section rhythm */
+.page-title{padding:56px 0 40px;border-bottom:0}
+.page-title h1{font-size:clamp(2.6rem,6vw,4.6rem);text-transform:none;line-height:1;letter-spacing:-.03em}
+.page-title.post-title h1{font-size:clamp(2.2rem,4.6vw,3.6rem)}
+.page-title p{font-size:1.12rem;margin-top:16px;color:#4a4a3a}
+.page-title + section{padding-top:8px}
+.offers{border-top:0}
+.rp .jump{flex-direction:row}
+@media (max-width:900px){
+  .page-title{padding:32px 0 20px}
+  .page-title h1{font-size:clamp(2.3rem,10vw,3rem)}
+  .page-title.post-title h1{font-size:clamp(1.9rem,8vw,2.4rem)}
+  .page-title p{font-size:1.02rem}
+  .rp .jump{flex-direction:row}
+  .rp .jump .btn{flex:1;padding:13px 10px}
+}
+@media (max-width:900px){ .rp p.jump{flex-direction:row} }

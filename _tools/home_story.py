@@ -30,7 +30,6 @@ def home_html(IG, AVEE, RECIPES, POSTS, photo, NEWS):
 <section class="s-hero">
   <div class="wrap s-hero-grid">
     <div class="s-hero-text reveal">
-      <p class="kicker">Nurtured by Aanchal</p>
       <h1>Strong mama.<br>Soft heart.<br><em>Loud opinions.</em></h1>
       <p class="s-lede">I'm Aanchal: a working mom in Vancouver, raising a toddler, lifting weights and saying the things South Asian women are told to keep quiet.</p>
       <div class="s-proof">
