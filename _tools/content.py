@@ -33,7 +33,7 @@ RECIPES = [
         "steps": ["Heat oil in a pot (or Instant Pot on Sauté). Add cumin and let it sizzle.", "Add onion and cook for 8–10 minutes until golden. This is where the flavour comes from, so don't rush it.", "Add ginger-garlic paste and cook for 1 minute, then the tomato purée and dry spices. Cook until the oil separates, about 5 minutes.", "Add chickpeas, salt and water. Simmer for 15 minutes, mashing a few chickpeas to thicken the gravy (or pressure cook for 5 minutes).", "Stir in amchur or lemon. Serve topped with coriander and onion."],
     },
     {
-        "slug": "dry-aloo-gobi-sabzi", "title": "Dry aloo gobi sabzi", "cat": "Weeknight dinners",
+        "slug": "dry-aloo-gobi-sabzi", "image": 'https://commons.wikimedia.org/wiki/Special:FilePath/Aloo_gobi.jpg?width=1200', "credit": 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Aloo_gobi.jpg" rel="noopener">Paul Goyette</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" rel="noopener license">CC BY-SA 2.0</a>, via Wikimedia Commons', "title": "Dry aloo gobi sabzi", "cat": "Weeknight dinners",
         "summary": "Potato and cauliflower with simple spices. Goes with roti, dal-rice, or straight into a lunchbox.",
         "prep": 10, "cook": 25, "servings": 4, "date": "2026-11-24", "colour": "#D4A017",
         "story": ["Aloo gobi is one of those sabzis that works with everything. The trick is to let the cauliflower get a little colour before covering the pan, so it doesn't go mushy.",
@@ -42,7 +42,7 @@ RECIPES = [
         "steps": ["Heat oil in a wide pan. Add cumin, green chilli and ginger.", "Add potatoes and cook for 5 minutes, stirring.", "Add cauliflower, turmeric, coriander powder, chilli powder and salt. Toss well.", "Cook uncovered on medium-high for 5 minutes for a little colour, then cover and cook on low for 12–15 minutes, stirring once or twice, until tender.", "Sprinkle garam masala and coriander. Serve hot."],
     },
     {
-        "slug": "paneer-bhurji-lunchbox-wrap", "title": "Paneer bhurji lunchbox wraps", "cat": "Lunchbox",
+        "slug": "paneer-bhurji-lunchbox-wrap", "image": 'https://commons.wikimedia.org/wiki/Special:FilePath/Homemade_Paneer_Bhurji.jpg?width=1200', "credit": 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Homemade_Paneer_Bhurji.jpg" rel="noopener">Maskaravivek</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener license">CC BY-SA 4.0</a>, via Wikimedia Commons', "title": "Paneer bhurji lunchbox wraps", "cat": "Lunchbox",
         "summary": "Scrambled spiced paneer rolled into a roti. Ready in 15 minutes and travels well in a lunchbox.",
         "prep": 5, "cook": 10, "servings": 3, "date": "2026-11-24", "colour": "#E07A5F",
         "story": ["This is a protein-packed lunch that comes together faster than you can find the car keys. Leftover rotis work perfectly.",
@@ -60,7 +60,7 @@ RECIPES = [
         "steps": ["Dry-roast the semolina in a pan on medium heat for 4–5 minutes until it smells nutty. Set aside.", "Heat oil, add mustard seeds and let them pop. Add urad dal and curry leaves.", "Add onion, ginger and vegetables and cook for 3 minutes.", "Pour in the hot water and salt and bring to a boil.", "Lower the heat and add the semolina slowly, stirring constantly, so no lumps form.", "Cover and cook on low for 2 minutes. Fluff up, squeeze in lemon and add coriander."],
     },
     {
-        "slug": "mini-besan-chilla-toddler-finger-food", "title": "Mini besan chillas (toddler finger food)", "cat": "Toddler meals",
+        "slug": "mini-besan-chilla-toddler-finger-food", "image": 'https://commons.wikimedia.org/wiki/Special:FilePath/Besan_chilla.jpg?width=1200', "credit": 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Besan_chilla.jpg" rel="noopener">Patelaahil</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener license">CC BY-SA 4.0</a>, via Wikimedia Commons', "title": "Mini besan chillas (toddler finger food)", "cat": "Toddler meals",
         "summary": "Small savoury chickpea-flour pancakes with grated veg. Soft, easy to hold, and great for little hands.",
         "prep": 5, "cook": 15, "servings": 3, "date": "2026-11-24", "colour": "#F2CC8F",
         "story": ["Besan chillas are a breakfast staple in many North Indian homes. Make them small and they become the perfect finger food for toddlers learning to feed themselves.",
@@ -69,7 +69,7 @@ RECIPES = [
         "steps": ["Whisk the besan with water to a smooth pouring batter, like pancake batter.", "Stir in the vegetables, turmeric, ajwain and salt. Rest for 5 minutes.", "Heat a non-stick pan and brush with a little oil.", "Pour small spoonfuls of batter (about 3 inches across) and cook for 2 minutes until the edges lift.", "Flip and cook another 1–2 minutes until golden. Serve warm with yogurt."],
     },
     {
-        "slug": "sunday-rajma-chawal", "title": "Sunday rajma chawal", "cat": "Weekend",
+        "slug": "sunday-rajma-chawal", "image": 'https://commons.wikimedia.org/wiki/Special:FilePath/Rajma,_kidney_beans,_served_with_chawal,_rice.jpg?width=1200', "credit": 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Rajma,_kidney_beans,_served_with_chawal,_rice.jpg" rel="noopener">rovingI</a>, <a href="https://creativecommons.org/licenses/by/2.0/" rel="noopener license">CC BY 2.0</a>, via Wikimedia Commons', "title": "Sunday rajma chawal", "cat": "Weekend",
         "summary": "Slow-simmered kidney beans in an onion-tomato gravy. The weekend comfort meal, with enough left for Monday.",
         "prep": 15, "cook": 45, "servings": 5, "date": "2026-11-24", "colour": "#9B2226",
         "story": ["Rajma chawal is a Sunday tradition in a lot of Punjabi homes. It takes a little longer, but most of that time is hands-off simmering while you get on with the day.",
