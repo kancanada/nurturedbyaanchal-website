@@ -1,22 +1,21 @@
 import html
 
 REELS = [
-    ("DTZOFqtE9qe", "3.6M", "Why don't men understand this?", "Motherhood is the biggest blessing, and the most grounding experience of your life."),
-    ("DRGcR7xCM52", "1.4M", "The picture that opened his eyes", "A woman grows a life inside her. A real man may never feel it, but he chooses to understand."),
-    ("DcSKWwvsHY3", "808K", "Is feminism ending?", "What if “doing it all” was never the freedom we were promised?"),
-    ("DevO3AysJOF", "793K", "Our mothers fought for stability. We fought for identity.", "Now we're drowning in both."),
-    ("DPkiioegCY6", "733K", "The scariest thing every man should do", "Reacting to R Madhavan on what men owe the women at home."),
-    ("DWFn_d-MPSk", "532K", "Your body is always listening", "What your mind suppresses, your body expresses."),
+    ("DYisdRJMqNF", "A postpartum woman needs her mother", "Step back, sasuma. Not out, just back."),
+    ("DYa-MPeMxN0", "Everyone saw the baby. Nobody saw the mom.", "What new moms hear after “pehla pota hai”."),
+    ("DV6TkXEDF7R", "That one good day a month", "When your hormones, your hair and your makeup all cooperate."),
+    ("DS6UBrmCOUj", "How I see my husband", "A date night on the water with Anuj."),
+    ("DM0tD93oZg2", "Welcome to Nurtured by Aanchal", "Where it all started: something soft, something nurturing."),
 ]
 
 
 def reel_wall(IG):
     cards = "".join(
         f'''<a class="reel" href="https://www.instagram.com/reel/{rid}/" rel="noopener">
-          <span class="reel-views"><b>{v}</b> views</span>
+          <span class="reel-img"><img src="/images/reels/{rid}.jpg" alt="Aanchal in her Reel: {html.escape(t)}" loading="lazy"></span>
           <span class="reel-t">{html.escape(t)}</span>
           <span class="reel-c">{html.escape(c)}</span>
-        </a>''' for rid, v, t, c in REELS)
+        </a>''' for rid, t, c in REELS)
     return cards
 
 
@@ -70,8 +69,8 @@ def home_html(IG, AVEE, RECIPES, POSTS, photo, NEWS):
 <section class="reels-sec">
   <div class="wrap">
     <div class="reels-head reveal">
-      <h2>The conversations that went viral</h2>
-      <p>Over 12 million views on Instagram, mostly from women who felt seen. Swipe through the ones that started the biggest debates.</p>
+      <h2>The conversations women keep sharing</h2>
+      <p>Over 12 million Reel views on Instagram, mostly from women who felt seen. Swipe through a few, then come say hi.</p>
     </div>
   </div>
   <div class="reel-track" tabindex="0" aria-label="Most-viewed Reels">{reel_wall(IG)}</div>

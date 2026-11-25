@@ -389,11 +389,5 @@ section{padding:110px 0}
 .d-badge{white-space:nowrap;font-size:.78rem;font-weight:600;padding:5px 10px;border-radius:999px;background:#f0f2f4;color:#5F7A8B}
 .d-badge.on{background:#EEF5C2;color:#666640}
 .d-city{font-size:.8rem;color:#777}
-/* Reel wall: quote cards (no screenshots) */
-.reel{flex-basis:280px;background:rgba(255,255,255,.07);border:1px solid rgba(238,245,194,.25);border-radius:18px;padding:26px 24px;min-height:300px;display:flex;flex-direction:column}
-.reel-views{margin:0 0 auto}
-.reel-views b{font-size:3rem;line-height:1}
-.reel-t{font-size:1.15rem;margin-top:24px}
-.reel:hover,.reel:focus-visible{background:rgba(255,255,255,.13)}
 .tl-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 .b-card img{object-position:center top}
