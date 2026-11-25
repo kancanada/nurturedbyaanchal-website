@@ -31,17 +31,11 @@ def card(r, out):
     base = hex2rgb(r.get("colour", "#666640"))
     im = Image.new("RGB", (W, H), CREAM)
     d = ImageDraw.Draw(im)
-    # bowl: plate rim + food + garnish
-    cx, cy, R = 930, 560, 300
-    d.ellipse((cx - R - 30, cy - R - 30, cx + R + 30, cy + R + 30), fill=(255, 255, 255))
-    d.ellipse((cx - R, cy - R, cx + R, cy + R), fill=mix(base, (255, 255, 255), .15))
-    d.ellipse((cx - R + 40, cy - R + 40, cx + R - 40, cy + R - 40), fill=base)
-    for (dx, dy, s) in [(-90, -60, 26), (60, -110, 20), (110, 40, 24), (-30, 90, 22), (-150, 50, 18), (20, 0, 16)]:
-        d.ellipse((cx + dx - s, cy + dy - s, cx + dx + s, cy + dy + s), fill=(102, 140, 60))
-    d.ellipse((cx + 150 - 30, cy - 160 - 30, cx + 150 + 30, cy - 160 + 30), fill=mix(base, (255, 255, 255), .55))
+    # no food drawing: a plain title card until a real photo of the dish exists
+    d.rectangle((W - 260, 0, W, H), fill=base)
     # text block
     d.text((70, 90), r.get("cat", "Recipe").upper(), font=font("Medium", 30), fill=(102, 102, 64))
-    title = textwrap.fill(r["title"], 13)
+    title = textwrap.fill(r["title"], 22)
     d.multiline_text((70, 150), title, font=font("SemiBold", 60), fill=(20, 20, 20), spacing=8)
     d.text((70, H - 150), f'{r["prep"] + r["cook"]} min  ·  serves {r["servings"]}', font=font("Regular", 34), fill=(70, 70, 70))
     d.text((70, H - 95), "nurturedbyaanchal.com", font=font("Medium", 30), fill=(95, 122, 139))
