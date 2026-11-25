@@ -391,3 +391,5 @@ section{padding:110px 0}
 .d-city{font-size:.8rem;color:#777}
 .tl-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 .b-card img{object-position:center top}
+/* One frame style for every photo */
+.ch-img img,.k-photo,.r-intro img,.tl-grid img,.b-card img,.r-card img,.post-img img,.reel-img,.from-a img,.c-photo img{border-radius:18px}
