@@ -435,7 +435,7 @@ p:has(> .btn + .btn),.s-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:ce
   .btn{padding:15px 22px}
 }
 .s-hero h1{font-size:clamp(2.6rem,4.9vw,4.4rem)}
-.s-hero-grid{grid-template-columns:1.15fr .85fr}
+@media (min-width:901px){.s-hero-grid{grid-template-columns:1.15fr .85fr}}
 @media (max-width:900px){
   .s-hero h1{font-size:clamp(2.4rem,11vw,3.4rem)}
   .chapters{padding:48px 0 10px}
@@ -458,3 +458,6 @@ p:has(> .btn + .btn),.s-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:ce
   .rp .jump .btn{flex:1;padding:13px 10px}
 }
 @media (max-width:900px){ .rp p.jump{flex-direction:row} }
+
+.rp .jump .btn{font-family:inherit;font-size:.85rem;line-height:1.35;border:2px solid transparent}
+.rp .jump .btn-ghost-dark{border-color:#2f2f1e}
