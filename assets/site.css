@@ -474,3 +474,7 @@ p:has(> .btn + .btn),.s-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:ce
 .prose h2{font-size:clamp(1.5rem,2.8vw,2rem);font-weight:600}
 .offers h3{font-size:1.4rem}
 .kitchen h2,.ch-text h2,.reels-head h2,.brands h2,.d-unlock h2{font-weight:600;letter-spacing:-.02em}
+.ask.think{background:#f3efe4;margin:36px 0 28px}
+.ask.think h3{font-size:1.25rem}
+ul.sources{padding-left:1.2em;margin-bottom:24px}
+ul.sources li{margin:6px 0}

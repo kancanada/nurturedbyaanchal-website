@@ -18,7 +18,7 @@ SHORT = "1Y15WDU7Q_k"
 PHOTOS = {"hero": "images/aanchal-hero.jpg", "about": "images/aanchal-kitchen.jpg",
           "family": "images/aanchal-family.jpg"}
 
-NAV = [("Home", "/"), ("About", "/about/"), ("Recipes", "/recipes/"), ("Deals", "/deals/"), ("Shop", "/shop/"), ("Contact", "/contact/")]
+NAV = [("Home", "/"), ("About", "/about/"), ("Recipes", "/recipes/"), ("News", "/news/"), ("Deals", "/deals/"), ("Shop", "/shop/"), ("Contact", "/contact/")]
 
 try:
     from content import RECIPES, POSTS, SHOP
@@ -125,6 +125,7 @@ def footer(scripts=""):
       <p><a href="/disclosure/">Disclosure</a></p>
       <p><a href="/privacy/">Privacy policy</a></p>
       <p><a href="/blog/">Blog</a></p>
+      <p><a href="/news/">News</a></p>
     </div>
     <div>
       <h4><a href="/contact/">Contact</a></h4>
@@ -408,6 +409,10 @@ def render_blocks(blocks):
             out.append(f'<div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/{val}" title="{html.escape(b[2])}" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div><p class="credit">{b[2]}</p>')
         elif kind == "img":
             out.append(f'<figure class="post-img"><img src="{val}" alt="{html.escape(b[2])}" loading="lazy"></figure>')
+        elif kind == "ig":
+            out.append(ig_embed(val, html.escape(b[2])))
+        elif kind == "think":
+            out.append(f'<div class="ask think"><h3>What I think</h3><p>{val}</p></div>')
         elif kind == "ask":
             out.append(f'<div class="ask"><h3>{html.escape(val)}</h3><p>{b[2]}</p><p><a class="btn" href="{IG}" rel="noopener">Tell me on Instagram</a> <a class="btn btn-ghost-dark" href="mailto:{EMAIL}?subject={html.escape(val)}">Email me your take</a></p></div>')
     return "\n    ".join(out)
@@ -425,6 +430,31 @@ for p in POSTS:
           + f"""<section><div class="wrap prose post">
     <p class="meta-line">By Aanchal Bathija · {html.escape(p["date_label"])} · {p.get("read","5 min read")}</p>
     {render_blocks(p["blocks"])}
+  </div></section>
+""" + NEWS + footer(IG_SCRIPT if any(b[0] == "ig" for b in p["blocks"]) else ""))
+
+# ================= NEWS =================
+from news import NEWS as NEWS_ITEMS
+news_body = ('<div class="b-grid">' + ''.join(f'<a class="b-card" href="/news/{n["slug"]}/"><img src="{n["image"]}" alt="{html.escape(n["image_alt"])}" loading="lazy"><h3>{html.escape(n["title"])}</h3><p>{html.escape(n["date_label"])} · {html.escape(n["summary"])}</p></a>' for n in NEWS_ITEMS) + '</div>') if NEWS_ITEMS else '<div class="soon"><h3>First stories coming soon</h3></div>'
+write("/news/", head("News for moms in Canada", "Recalls, childcare, parental leave and new launches for families in Vancouver and across Canada, in plain words.", "/news/")
+      + header("/news/") + page_title("News", "What moms in B.C. and across Canada should know this week, with every source linked.")
+      + f"""<section><div class="wrap">{news_body}</div></section>
+""" + NEWS + footer())
+for n in NEWS_ITEMS:
+    ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": n["title"],
+          "description": n["summary"], "datePublished": n["date"], "image": [n["image"]],
+          "author": {"@type": "Person", "name": "Aanchal Bathija"},
+          "mainEntityOfPage": f'{SITE}/news/{n["slug"]}/'}
+    extra = f'<script type="application/ld+json">{json.dumps(ld)}</script>\n<meta property="og:image" content="{n["image"]}">\n'
+    srcs = "".join(f'<li><a href="{html.escape(u)}" rel="noopener">{html.escape(l)}</a></li>' for l, u in n["sources"])
+    write(f'/news/{n["slug"]}/', head(n["title"], n["summary"], f'/news/{n["slug"]}/', extra)
+          + header("/news/") + page_title(html.escape(n["title"]), html.escape(n["summary"])).replace('class="page-title"','class="page-title post-title"')
+          + f"""<section><div class="wrap prose post">
+    <p class="meta-line">By Aanchal Bathija · {html.escape(n["date_label"])} · {n.get("read","4 min read")}</p>
+    <figure class="post-img"><img src="{n["image"]}" alt="{html.escape(n["image_alt"])}"><figcaption class="credit">{html.escape(n["credit"])}</figcaption></figure>
+    {render_blocks(n["blocks"])}
+    <h2>Sources</h2><ul class="sources">{srcs}</ul>
+    <p><small>This is a summary in my own words of reporting by the outlets above. Check the original sources and official notices for full details. Nothing here is legal, financial or medical advice.</small></p>
   </div></section>
 """ + NEWS + footer())
 
@@ -495,8 +525,8 @@ for r in RECIPES:
 """ + NEWS + footer(IG_SCRIPT))
 
 # ================= SITEMAP =================
-paths = ["/", "/deals/", "/about/", "/recipes/", "/blog/", "/shop/", "/work-with-me/", "/contact/", "/disclosure/", "/privacy/"]
-paths += [f"/recipes/{r['slug']}/" for r in RECIPES] + [f"/blog/{p['slug']}/" for p in POSTS]
+paths = ["/", "/deals/", "/about/", "/recipes/", "/news/", "/blog/", "/shop/", "/work-with-me/", "/contact/", "/disclosure/", "/privacy/"]
+paths += [f"/recipes/{r['slug']}/" for r in RECIPES] + [f"/blog/{p['slug']}/" for p in POSTS] + [f"/news/{n['slug']}/" for n in NEWS_ITEMS]
 with open("sitemap.xml", "w") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
     for p in paths:
