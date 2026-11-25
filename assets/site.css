@@ -352,3 +352,24 @@ section{padding:110px 0}
  .reel{flex-basis:200px}
  .s-proof{gap:20px}.s-proof b{font-size:1.9rem}
 }
+
+/* ===== Recipe page (Swasthi-style) ===== */
+.rp .jump{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 22px}
+.rp-toc{background:#f6f8ee;border-left:4px solid #666640;border-radius:10px;padding:18px 22px;margin:28px 0}
+.rp-toc ul{margin:8px 0 0;padding-left:18px;columns:2;column-gap:30px}
+.rp-toc li{margin:4px 0}
+.rp h2{margin-top:44px}
+.subs{width:100%;border-collapse:collapse;margin:14px 0}
+.subs th,.subs td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid #C3CED6}
+.subs th{width:32%;color:#666640}
+.howto{list-style:none;padding:0;margin:18px 0;counter-reset:none}
+.howto li{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid #dfe5e9;border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.hs-n{flex:0 0 38px;height:38px;border-radius:50%;background:#666640;color:#fff;font-weight:600;display:flex;align-items:center;justify-content:center}
+.howto p{margin:6px 0 0}
+.tips li{margin-bottom:10px}
+.faqs details{border-bottom:1px solid #C3CED6;padding:14px 0}
+.faqs summary{cursor:pointer;font-weight:600}
+.faqs details p{margin:10px 0 0}
+.rc-sum{color:#4a4a3a}
+@media (max-width:600px){.rp-toc ul{columns:1}.subs th{width:40%}}
+@media print{header,footer,.news,.jump,.rp-toc,.from-a,.r-grid{display:none!important}}

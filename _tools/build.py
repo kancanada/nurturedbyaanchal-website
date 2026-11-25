@@ -383,6 +383,8 @@ for p in POSTS:
 """ + NEWS + footer())
 
 # ================= RECIPE PAGES (Google recipe rich results) =================
+from recipe_extras import EXTRAS
+
 def mins(n):
     return f"PT{n}M"
 
@@ -402,22 +404,48 @@ for r in RECIPES:
     reel = ig_embed(r["reel"], "Watch the Reel") if r.get("reel") else ""
     aff = '<p class="note">This post has affiliate links. See the <a href="/disclosure/">disclosure</a>.</p>' if r.get("affiliate") else ""
     ing_count = len(r["ingredients"])
+    x = EXTRAS.get(r["slug"], {})
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in x.get("faqs", [])]}
+    if x.get("faqs"):
+        extra += f'<script type="application/ld+json">{json.dumps(faq_ld)}</script>\n'
+    subs = "".join(f"<tr><th>{html.escape(a)}</th><td>{html.escape(b)}</td></tr>" for a, b in x.get("subs", []))
+    howto = "".join(f'<li><span class="hs-n">{i}</span><p>{html.escape(st)}</p></li>' for i, st in enumerate(r["steps"], 1))
+    tips = "".join(f"<li>{html.escape(t)}</li>" for t in x.get("tips", []))
+    faqs = "".join(f"<details><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>" for q, a in x.get("faqs", []))
+    related = "".join(
+        f'<a class="r-card" href="/recipes/{o["slug"]}/"><img src="{o["image"]}" alt="{html.escape(o["title"])}" loading="lazy"><span class="r-meta">{o["prep"] + o["cook"]} min</span><h3>{html.escape(o["title"])}</h3></a>'
+        for o in [o for o in RECIPES if o["slug"] != r["slug"] and o.get("cat") == r.get("cat")][:3] or [o for o in RECIPES if o["slug"] != r["slug"]][:3])
+    toc = "".join(f'<li><a href="#{a}">{t}</a></li>' for a, t in [("about", "What is it"), ("ingredients", "Ingredients &amp; substitutes"), ("how", "How to make it"), ("tips", "Expert tips"), ("faqs", "FAQs"), ("recipe", "Recipe card")])
     write(f'/recipes/{r["slug"]}/', head(r["title"], r["summary"], f'/recipes/{r["slug"]}/', extra + f'<meta property="og:image" content="{absurl(r["image"])}">\n')
           + header("/recipes/") + page_title(html.escape(r["title"]), html.escape(r["summary"])).replace('class="page-title"','class="page-title post-title"')
-          + f"""<section><div class="wrap prose post">
-    <p class="meta-line">{html.escape(r.get("cat",""))} · {r["prep"] + r["cook"]} min · serves {r["servings"]} · <a href="#recipe">Jump to recipe</a></p>
+          + f"""<section><div class="wrap prose post rp">
+    <p class="meta-line">By Aanchal Bathija · {html.escape(r.get("cat",""))} · {r["prep"] + r["cook"]} min · serves {r["servings"]}</p>
+    <p class="jump"><a class="btn" href="#recipe">Jump to recipe</a> <button class="btn btn-ghost-dark" onclick="window.print()">Print recipe</button></p>
     <figure class="post-img"><img src="{r["image"]}" alt="{html.escape(r["title"])}">{f'<figcaption class="credit">{r["credit"]}</figcaption>' if r.get("credit") else ""}</figure>
-    {aff}{story}{reel}
+    {aff}
+    <nav class="rp-toc" aria-label="On this page"><strong>On this page</strong><ul>{toc}</ul></nav>
+    <h2 id="about">What is {html.escape(x.get("name", r["title"]))}?</h2><p>{html.escape(x.get("about",""))}</p>
+    <h2>About my recipe</h2>{story}{reel}
+    <h2 id="ingredients">Ingredients &amp; substitutes</h2>
+    <p>You'll need {ing_count} ingredients, most of them pantry staples. The full amounts are in the <a href="#recipe">recipe card</a>. If you're missing something, here's what I swap in:</p>
+    <table class="subs">{subs}</table>
+    <h2 id="how">How to make it</h2>
+    <ol class="howto">{howto}</ol>
+    <h2 id="tips">Expert tips</h2><ul class="tips">{tips}</ul>
+    <h2 id="faqs">FAQs</h2><div class="faqs">{faqs}</div>
     <aside class="from-a"><img src="/images/aanchal-kitchen.jpg" alt="Aanchal with her son"><div><strong>A note from me</strong><p>I cook for a full-time job, a toddler and a husband who's always hungry, so everything here is tested on real weeknights. Make it your own, and tell me how it went.</p></div></aside>
     <div class="recipe-card" id="recipe">
       <h2>{html.escape(r["title"])}</h2>
+      <p class="rc-sum">{html.escape(r["summary"])}</p>
       <dl class="r-facts"><div><dt>Prep</dt><dd>{r["prep"]} min</dd></div><div><dt>Cook</dt><dd>{r["cook"]} min</dd></div><div><dt>Total</dt><dd>{r["prep"] + r["cook"]} min</dd></div><div><dt>Serves</dt><dd>{r["servings"]}</dd></div></dl>
       <h3>Ingredients</h3><ul class="ing">{ing}</ul>
       <h3>Method</h3><ol class="method">{steps}</ol>
       <p class="r-note">Made this? Tag <a href="{IG}" rel="noopener">@nurturedbyaanchal</a> on Instagram, I'd love to see it.</p>
       <button class="btn btn-ghost-dark print-btn" onclick="window.print()">Print recipe</button>
     </div>
-  </div></section>
+    <h2>More recipes you'll like</h2>
+  </div><div class="wrap"><div class="r-grid">{related}</div></div></section>
 """ + NEWS + footer(IG_SCRIPT))
 
 # ================= SITEMAP =================
