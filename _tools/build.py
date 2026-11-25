@@ -8,7 +8,7 @@ import json, os, html, hashlib
 from datetime import date
 
 SITE = "https://nurturedbyaanchal.com"
-EMAIL = "nurturedbyaanchal@gmail.com"
+EMAIL = "aanchal@nurturedbyaanchal.com"
 IG = "https://www.instagram.com/nurturedbyaanchal/"
 YT = "https://www.youtube.com/@NurturedByAanchal"
 THREADS = "https://www.threads.net/@nurturedbyaanchal"
