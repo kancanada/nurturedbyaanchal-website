@@ -373,3 +373,5 @@ section{padding:110px 0}
 .rc-sum{color:#4a4a3a}
 @media (max-width:600px){.rp-toc ul{columns:1}.subs th{width:40%}}
 @media print{header,footer,.news,.jump,.rp-toc,.from-a,.r-grid{display:none!important}}
+.partner{background:#f6f8ee;border-radius:18px;padding:28px 30px;max-width:640px}
+.partner h3{margin:0 0 8px;color:#666640}

@@ -91,8 +91,8 @@ NEWS = f"""<section class="news" id="newsletter">
     <h2>Get the good stuff</h2>
     <p>Real mom life, straight to your inbox.</p>
     <p>Our weeknight meals, my workout routine, toddler lunchbox ideas and what's actually working in our week.</p>
-    <p>(The newsletter is starting soon. Follow along on Instagram until then.)</p>
-    <a class="btn" href="{IG}" rel="noopener">Follow on Instagram</a>
+    <p>To join, email me with "Subscribe" in the subject line and I'll add you. You can unsubscribe any time by replying "Unsubscribe".</p>
+    <p><a class="btn" href="mailto:{EMAIL}?subject=Subscribe&amp;body=Hi%20Aanchal%2C%20please%20add%20me%20to%20your%20newsletter.">Subscribe by email</a> <a class="btn btn-ghost-dark" href="/guides/weeknight-dinner-plan.pdf" download>Get the free dinner plan</a></p>
   </div>
 </section>
 """
@@ -252,17 +252,17 @@ if SHOP:
         f'<li><strong><a href="{html.escape(p["url"])}" rel="sponsored noopener">{html.escape(p["name"])}</a></strong>{html.escape(p["why"])}</li>'
         for p in SHOP) + "</ul>"
 else:
-    favs = """<div class="soon"><h3>My picks are coming soon</h3><p>I'm only adding things I actually use at home, at the gym and with my son.</p></div>"""
+    favs = f"""<div class="partner"><div><h3>Avee Health</h3><p>A paid partnership: I made a UGC video for Avee Health, and they ran it as an ad.</p><p><a class="btn" href="{AVEE}" rel="noopener">Watch the video</a></p></div></div>"""
 write("/shop/", head("Shop", "Aanchal's guides and the products she uses at home, at the gym and with her son.", "/shop/")
       + header("/shop/") + page_title("Shop", "My own guides, and the things I actually use.")
       + f"""<section style="padding:0"><div class="offers">
-    <article><h3>E-books &amp; guides</h3><p class="meta">Coming soon</p><p>My first guide for busy moms is in the works. Join the list to hear first.</p><p><a class="btn" href="#newsletter">Get notified</a></p></article>
-    <article><h3>My favourites</h3><p class="meta">Home, gym &amp; toddler</p><p>The products we use every week, in one place.</p><p><a class="btn" href="#favourites">See my picks</a></p></article>
+    <article><h3>The Working Mom's Weeknight Dinner Plan</h3><p class="meta">Free PDF guide, 12 pages</p><p>One week of South Asian dinners that fit around a full-time job and a toddler: the plan, a shopping list and 8 recipes.</p><p><a class="btn" href="/guides/weeknight-dinner-plan.pdf" download>Download free</a></p></article>
+    <article><h3>Brands I've worked with</h3><p class="meta">Paid partnerships</p><p>The brands I've made content for, always disclosed.</p><p><a class="btn" href="#favourites">See partners</a></p></article>
     <article><h3>Recipes</h3><p class="meta">Free</p><p>Weeknight dinners and toddler meals from our kitchen.</p><p><a class="btn" href="/recipes/">See recipes</a></p></article>
   </div></section>
 <section id="favourites"><div class="wrap">
-    <h2 style="font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;margin-bottom:24px">My favourites</h2>
-    <p class="note">Some links on this page are affiliate links. If you buy through them, I may earn a small commission at no extra cost to you. I only list products I use. <a href="/disclosure/">Read the full disclosure</a>.</p>
+    <h2 style="font-size:clamp(2rem,4vw,3rem);margin-bottom:24px">Brands I've worked with</h2>
+    <p class="note">Paid partnerships are always labelled. <a href="/disclosure/">Read the full disclosure</a>.</p>
     {favs}
   </div></section>
 """ + NEWS + footer())
