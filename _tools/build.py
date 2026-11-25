@@ -46,7 +46,10 @@ def photo(key, alt):
 CSSV = hashlib.md5(open("assets/site.css","rb").read()).hexdigest()[:8]
 
 def head(title, desc, path, extra=""):
-    full = title if path == "/" else f"{title} | Nurtured by Aanchal"
+    full = title if path == "/" else (f"{title} | Nurtured by Aanchal" if len(title) <= 42 else title)
+    if len(desc) > 160:
+        desc = desc[:157].rsplit(" ", 1)[0].rstrip(",.;:") + "..."
+    og_img = "" if "og:image" in extra else f'<meta property="og:image" content="{SITE}/images/aanchal-hero.jpg">\n'
     return f"""<!DOCTYPE html>
 <html lang="en-CA">
 <head>
@@ -59,7 +62,13 @@ def head(title, desc, path, extra=""):
 <meta property="og:description" content="{html.escape(desc)}">
 <meta property="og:url" content="{SITE}{path}">
 <meta property="og:type" content="website">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:site_name" content="Nurtured by Aanchal">
+<meta property="og:locale" content="en_CA">
+{og_img}<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#666640">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -169,9 +178,16 @@ def link_list(items, base):
 
 # ================= HOME =================
 from home_story import home_html
+PERSON_LD = '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": [
+    {"@type": "WebSite", "name": "Nurtured by Aanchal", "url": SITE + "/"},
+    {"@type": "Person", "name": "Aanchal Bathija", "url": SITE + "/", "image": SITE + "/images/aanchal-hero.jpg",
+     "jobTitle": "Content creator", "description": "Working mom in Vancouver sharing motherhood, family life, fitness and South Asian recipes.",
+     "address": {"@type": "PostalAddress", "addressLocality": "Vancouver", "addressRegion": "BC", "addressCountry": "CA"},
+     "sameAs": [IG, YT, THREADS]}]}) + '</script>\n'
+
 home = head("Nurtured by Aanchal | Working mom, real conversations",
             "Aanchal Bathija is a working mom in Vancouver with 12M+ Reel views, talking motherhood, marriage, feminism and real routines.",
-            "/") + header("/") + home_html(IG, AVEE, RECIPES, POSTS, photo, NEWS) + footer(MOTION_JS)
+            "/", PERSON_LD) + header("/") + home_html(IG, AVEE, RECIPES, POSTS, photo, NEWS) + footer(MOTION_JS)
 write("/", home)
 
 # ================= ABOUT =================
@@ -353,7 +369,7 @@ write("/disclosure/", head("Disclosure", "How Nurtured by Aanchal handles affili
 """ + footer())
 
 # ================= PRIVACY =================
-write("/privacy/", head("Privacy policy", "What Nurtured by Aanchal collects and how it's used.", "/privacy/")
+write("/privacy/", head("Privacy policy", "What Nurtured by Aanchal collects when you email, subscribe or browse the site, how it's used, and how to ask us to delete it.", "/privacy/")
       + header("/privacy/") + page_title("Privacy policy", "What this site collects, and what I do with it.")
       + f"""<section><div class="wrap prose">
     <p>Last updated: {date.today().strftime('%B %-d, %Y')}</p>
