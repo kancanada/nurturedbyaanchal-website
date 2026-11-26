@@ -213,6 +213,76 @@ RECIPES = [
 ]
 
 POSTS = [
+    {'slug': 'vegetarian-indian-dinners-kids-enjoy-week-plan',
+     'title': 'A week of vegetarian Indian dinners kids can enjoy',
+     'summary': 'Seven mild, family-friendly vegetarian Indian dinners for the week, with how to make each one work for kids and grown-ups from the same pot.',
+     'date': '2026-11-26',
+     'date_label': 'November 26, 2026',
+     'read': '7 min read',
+     'image': 'https://images.unsplash.com/photo-1630409351211-d62ab2d24da4?w=1200&h=800&fit=crop&crop=entropy&q=80&auto=format',
+     'blocks': [('p', "One of the questions I get the most from other moms is some version of this: which vegetarian Indian meals will my kids actually eat, so I'm not cooking two dinners every night?"),
+                ('p',
+                 "I work full time and I'm raising a two-year-old, so I'm not cooking separate kids' meals on a Tuesday either. What works for me is choosing dishes that are mild at the base, then "
+                 "adding the heat and the extras for the grown-ups at the end. Here's a full week of vegetarian Indian dinners built that way, all with recipes on this site."),
+                ('h', 'Which vegetarian Indian meals do kids usually enjoy?'),
+                ('p', "There's no single answer, because every child is different. But the dishes that tend to go down well with little ones have a few things in common:"),
+                ('p',
+                 '• <strong>Mild and soft.</strong> Dal, khichdi, rice dishes and paneer can all be made with almost no chilli.<br>• <strong>Familiar textures.</strong> Rice, roti and potato are easy '
+                 'wins, and they carry the less familiar flavours.<br>• <strong>Something to hold.</strong> Wraps, small chillas and roti rolls make dinner feel like finger food.<br>• <strong>A cool '
+                 'side.</strong> Plain yogurt or raita next to anything spiced makes it easier for kids to try.'),
+                ('p', "With that in mind, here's the week."),
+                ('h', 'Monday: moong dal tadka with rice'),
+                ('p',
+                 'Start the week with something gentle. <a href="/recipes/weeknight-moong-dal-tadka/">30-minute moong dal tadka</a> uses yellow moong, which needs no soaking and cooks in about 20 '
+                 "minutes. Take the kids' portion out before the tadka goes in, or give them a tadka with just ghee and cumin. Serve with rice and a spoon of ghee on top."),
+                ('h', 'Tuesday: one-pot vegetable pulao and raita'),
+                ('p',
+                 '<a href="/recipes/one-pot-vegetable-pulao-weeknight/">One-pot vegetable pulao</a> is rice with carrots, peas and beans, flavoured with whole spices instead of chilli powder. Fish out '
+                 'the whole spices before serving little ones. Add cubes of paneer at the end if you want it more filling, and serve with plain yogurt or raita.'),
+                ('h', 'Wednesday: paneer bhurji wraps'),
+                ('p',
+                 'Midweek is when I want dinner done fast. <a href="/recipes/paneer-bhurji-lunchbox-wrap/">Paneer bhurji wraps</a> take about 15 minutes, and rolling the filling into a roti or tortilla '
+                 "turns it into something kids can hold. Leave out the green chilli, and cut the wraps into small pinwheels for younger children. Leftovers go into tomorrow's lunchbox."),
+                ('h', 'Thursday: vegetable khichdi'),
+                ('p',
+                 '<a href="/recipes/one-pot-vegetable-khichdi-toddler/">One-pot vegetable khichdi</a> is rice, dal and whatever vegetables are left in the fridge by Thursday, all cooked soft in one pot. '
+                 "It's the easiest way I know to get dal, rice and vegetables into one bowl. Adults can add pickle or a spicier tadka on top."),
+                ('h', 'Friday: aloo gobi with roti and dal leftovers'),
+                ('p',
+                 '<a href="/recipes/dry-aloo-gobi-sabzi/">Dry aloo gobi</a> is potato and cauliflower with turmeric, cumin and ginger. Potato is usually an easy sell, and small cauliflower pieces double '
+                 'as finger food. Roll some into a roti with a little yogurt for kids who like a wrap.'),
+                ('h', 'Saturday: chana masala with rice'),
+                ('p',
+                 '<a href="/recipes/easy-chana-masala-instant-pot/">Easy chana masala</a> uses canned chickpeas, so it\'s a 40-minute dinner. For kids, skip the green chilli and chilli powder and stir a '
+                 'spoon of yogurt into their bowl. For very young children, mash the chickpeas a little. Make extra, because it tastes even better the next day.'),
+                ('h', 'Sunday: rajma chawal'),
+                ('p',
+                 '<a href="/recipes/sunday-rajma-chawal/">Sunday rajma chawal</a> is the slow one, with mostly hands-off simmering. Kidney beans in a mild onion-tomato gravy over rice is a combination a '
+                 'lot of kids already know. Make a big pot and freeze half for a busy night next week. Kidney beans must always be cooked until completely soft.'),
+                ('h', 'Easy swaps and extras'),
+                ('p',
+                 'If one of these doesn\'t suit your family, swap in <a href="/recipes/south-indian-curd-rice-toddler-lunchbox/">South Indian curd rice</a>, which is mild and cooling and needs no '
+                 'reheating, <a href="/recipes/south-indian-lemon-rice-lunchbox/">lemon rice</a> made from leftover rice, or <a href="/recipes/mini-besan-chilla-toddler-finger-food/">mini besan '
+                 'chillas</a>, small savoury pancakes that work as finger food for dinner or breakfast. For mornings, <a href="/recipes/kanda-poha-15-minute-breakfast/">kanda poha</a> and <a '
+                 'href="/recipes/vegetable-upma-breakfast/">vegetable upma</a> are both ready in about 15 minutes.'),
+                ('h', 'How I make one pot work for everyone'),
+                ('p',
+                 "• <strong>Spice at the end.</strong> Cook the base mild, pull out the kids' portion, then add chilli and garam masala for the adults.<br>• <strong>Serve it in parts.</strong> Some kids "
+                 "prefer rice, dal and vegetables side by side rather than mixed. It's the same dinner, just plated differently.<br>• <strong>Keep a safe food on the plate.</strong> Rice, roti or yogurt "
+                 'next to a new dish takes the pressure off.<br>• <strong>Let them help.</strong> Even a toddler can wash peas, tear coriander or stir the yogurt.<br>• <strong>Repeat without '
+                 'guilt.</strong> Kids often need to see a food several times before they try it. Serving dal again next week is not a failure.'),
+                ('h', 'Shopping basics for the week'),
+                ('p',
+                 'Most of this week runs on a short list: basmati rice, yellow moong dal, canned chickpeas, dried or canned kidney beans, a block of paneer, onions, tomatoes, ginger, garlic, potatoes, a '
+                 'cauliflower, frozen mixed vegetables, plain yogurt and a basic spice box (cumin, turmeric, coriander powder, garam masala and a mild chilli powder). If you like a printed plan, my free '
+                 '<a href="/guides/weeknight-dinner-plan.pdf">weeknight dinner plan</a> has a week at a glance and a shopping list.'),
+                ('ask',
+                 "What's the one Indian dinner your kids always ask for?",
+                 "And which one do they refuse every time? Tell me in the comments on Instagram or email me at aanchal@nurturedbyaanchal.com. I'll use your answers to plan the next set of "
+                 'family-friendly recipes.'),
+                ('p',
+                 "<small>Every child is different. Check with your doctor about your own child's diet and allergies, and cut food into safe sizes for little ones. Leave whole nuts and whole spices out "
+                 "of small children's portions.</small>")]},
     {'slug': 'log-kya-kahenge-stop-letting-it-decide-for-women',
      'title': '"Log kya kahenge": the most expensive excuse we have',
      'summary': 'Why I think "what will people say" holds women back more than almost anything else, and what real support for a woman\'s ambition looks like.',
