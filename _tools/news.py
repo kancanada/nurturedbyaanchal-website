@@ -3,6 +3,132 @@
 #   blocks [(kind, value, ...)] (same kinds as blog posts, plus ("think", html) for the "What I think" box),
 #   sources [(label, url)]
 NEWS = [
+    {'slug': 'statcan-child-care-staff-retention-bc-lowest',
+     'title': 'StatCan: B.C. child care staff least likely to stay put',
+     'summary': 'A new Statistics Canada study tracks how many early childhood educators stay in child care. Pay, pensions and unions made the biggest difference.',
+     'date': '2026-11-26',
+     'date_label': 'November 26, 2026',
+     'read': '4 min read',
+     'image': 'https://images.unsplash.com/photo-1587323655395-b1c77a12c89a?w=1200&h=800&fit=crop&crop=entropy&q=80&auto=format',
+     'image_alt': 'An adult and a young child colouring together at a small table',
+     'credit': 'Photo via Unsplash',
+     'blocks': [('p',
+                 'Statistics Canada released a new study on November 25 that looks at a question every parent waiting on a daycare spot has wondered about: how many early childhood educators actually '
+                 'stay in child care, and what makes them leave?'),
+                ('p',
+                 'The study, by Youjin Choi and Kristyn Frank, was published in StatCan\'s <a href="https://www150.statcan.gc.ca/n1/pub/36-28-0001/2026011/article/00001-eng.htm" rel="noopener">Economic '
+                 'and Social Reports</a>. It followed about 23,000 early childhood educators and assistants who worked in the child care services industry in 2021 and checked where they were working one '
+                 'year later. The researchers linked tax records with the 2021 census to do it.'),
+                ('h', 'The headline numbers'),
+                ('p',
+                 'Across Canada, 83% of early childhood educators and assistants were still working in child care a year later, and 75% were still with the same employer, <a '
+                 'href="https://www150.statcan.gc.ca/n1/daily-quotidien/261125/dq261125a-eng.htm" rel="noopener">StatCan\'s Daily summary</a> reported. That employer figure is about the same as the '
+                 'average for all paid workers in Canada.'),
+                ('p',
+                 'Of those who left child care, the most common next stop was elementary and secondary schools, at 22%. The study notes this could reflect more opportunities, or better wages and '
+                 'benefits, in the school system.'),
+                ('h', 'B.C. had the lowest rate of staying with the same employer'),
+                ('p',
+                 'This is the part that stood out for families here. In British Columbia, 68% of early childhood educators and assistants were still with the same employer a year later, the lowest of '
+                 'the 10 provinces. Saskatchewan and Alberta were close behind at 69%, Ontario was at 75%, and Quebec was highest at 79%.'),
+                ('p',
+                 "On staying in the child care field at all, B.C. was in the middle of the pack at 80%. Quebec was highest at 88% and Saskatchewan lowest at 76%. The authors suggest Quebec's results may "
+                 'be linked to higher wages and benefits for educators there and to its province-wide child care system, which has been in place since 1997.'),
+                ('h', 'Pay and benefits made the biggest difference'),
+                ('p',
+                 'The pattern in the data is very clear. Among educators earning less than $20,000 a year at their main job, 64% stayed in child care and only 51% stayed with their employer. Among those '
+                 'earning $40,000 to $59,999, 94% stayed in the field and 91% stayed with their employer. Those figures are in 2024 dollars.'),
+                ('p',
+                 "Benefits mattered too. Of educators who paid union dues, 90% stayed in the industry, compared with 82% of those who didn't. Of those who made pension contributions, 90% stayed, "
+                 "compared with 79% of those who didn't. Experience also helped: educators with more than 10 years in their job had a 94% industry retention rate, while those with one to two years were "
+                 'at 74%.'),
+                ('p', 'The researchers say these findings can help shape policies to keep educators in the sector, which supports the goals of the Canada-wide $10-a-day child care system.'),
+                ('h', "What the study can't tell us"),
+                ('p',
+                 "There's an important catch. The data only follows workers from 2021 to 2022, before most of the federal-provincial $10-a-day agreements were fully in place, so it doesn't show whether "
+                 "retention has improved since. It also can't measure things like stress or job satisfaction. StatCan says a new Canadian Child Care Worker Survey should help fill those gaps."),
+                ('p',
+                 "For context on what B.C. families are paying, the Canadian Centre for Policy Alternatives' <a "
+                 'href="https://www.policyalternatives.ca/news-research/the-10-a-day-divide-child-care-fees-in-canada-in-2026/" rel="noopener">annual fee survey</a> from August found B.C. infant fees in '
+                 'the cities it tracked ranged from $28 a day in Kelowna to $52 in Richmond, the highest of the 35 cities in the report. Its authors wrote that "most child care fees in Canada are not at '
+                 '$10 a day."'),
+                ('think',
+                 "For a working mom, child care isn't only about getting a spot. It's about whether the educator your child trusts will still be there in six months. Your workday depends on those "
+                 'people. This study puts numbers on something parents feel. If we want more child care spaces in B.C., we also need to pay and treat the people who staff them well enough that they '
+                 'stay.')],
+     'sources': [('Statistics Canada, The Daily: Economic and Social Reports, November 25, 2026', 'https://www150.statcan.gc.ca/n1/daily-quotidien/261125/dq261125a-eng.htm'),
+                 ('Statistics Canada: Industry and employer retention of early childhood educators and assistants (Choi and Frank), November 25, 2026',
+                  'https://www150.statcan.gc.ca/n1/pub/36-28-0001/2026011/article/00001-eng.htm'),
+                 ('Canadian Centre for Policy Alternatives: The $10-a-day divide, August 19, 2026',
+                  'https://www.policyalternatives.ca/news-research/the-10-a-day-divide-child-care-fees-in-canada-in-2026/')]},
+    {'slug': 'baby-nest-double-stroller-bike-seat-recalls-canada',
+     'title': 'Before you pass it on: baby nest, stroller and bike seat recalls',
+     'summary': "Health Canada's recent baby and toddler recalls: Simmons baby nests, a Valco double stroller, a Hamax bike seat and banned walkers sold on AliExpress.",
+     'date': '2026-11-26',
+     'date_label': 'November 26, 2026',
+     'read': '4 min read',
+     'image': 'https://images.unsplash.com/photo-1744424846144-d57267a19ee8?w=1200&h=800&fit=crop&crop=entropy&q=80&auto=format',
+     'image_alt': 'Two babies lying side by side in a double stroller',
+     'credit': 'Photo via Unsplash',
+     'blocks': [('p',
+                 'This is the time of year when a lot of baby gear changes hands. Older kids outgrow things, cousins pass down strollers, and buy-and-sell groups fill up before the holidays. Before '
+                 'anything goes into the hand-me-down bag, here are the baby and toddler products Health Canada has recalled or warned about over the past few weeks. Every item below links to the '
+                 'official notice.'),
+                ('h', 'Simmons Kozy and Nido baby nests and loungers'),
+                ('p',
+                 "On October 22, Health Canada announced a recall of Simmons Kozy and Nido baby nests and loungers. It determined they don't meet Canada's Cribs, Cradles and Bassinets Regulations, which "
+                 'creates a potential fall hazard, according to the <a href="https://recalls-rappels.canada.ca/en/alert-recall/simmons-kozy-and-nido-baby-nestsloungers-recalled-due-fall-hazard" '
+                 'rel="noopener">recall notice</a>.'),
+                ('p',
+                 'The affected models are Kozy 59900 (grey) and 59902 (taupe), and Nido 59950 (ivory), 59955 (taupe), 59960 (coconut milk) and 59965 (moonbeam). The model number is on the warning label '
+                 'on the product. As of October 19, the company had no reports of incidents or injuries in Canada.'),
+                ('p',
+                 "Health Canada says to stop using these right away and dispose of them so they can't be used again. Questions go to Jupiter Industries at 1-800-465-5795 or "
+                 'customerservice@jupiterindustries.com. The notice also repeats its reminder that the safest place for a baby to sleep is on their back, on a firm, flat surface meant for sleep.'),
+                ('h', 'Valco Baby Trend Duo Double Stroller'),
+                ('p',
+                 'This one is unusual: Health Canada <em>ordered</em> the recall. In a notice updated October 1, it said Junior Brands Corp. must recall the Valco Baby Trend Duo Double Stroller after '
+                 "Health Canada's own sampling and testing found it doesn't meet the Carriages and Strollers Regulations, according to the <a "
+                 'href="https://recalls-rappels.canada.ca/en/alert-recall/health-canada-orders-junior-brands-corp-recall-valco-baby-trend-duo-double-stroller" rel="noopener">order notice</a>.'),
+                ('p',
+                 "Health Canada says the stroller can tip over in use, the leg opening in front of the seat can let a child's torso slip through, which is an entrapment risk, and some areas around the "
+                 'seat can pinch. The affected colours are Night (N0001), Cappuccino (N0048), Cloud (N0460), Denim (N9872) and Charcoal (N9939). As of September 25, there were no reports of incidents or '
+                 'injuries in Canada. Stop using it and contact Junior Brands Corp. at support@juniorbrands.ca.'),
+                ('h', 'Hamax Buddy child bike seat'),
+                ('p',
+                 'If your toddler rides on the back of your bike, check this one. The Hamax Buddy child bicycle seat, reference numbers 4091054 and 8591602, was recalled on October 26 because the '
+                 'textile label on the harness strap can come off and become a choking hazard, the <a '
+                 'href="https://recalls-rappels.canada.ca/en/alert-recall/hamax-buddy-child-seat-recalled-due-choking-hazard" rel="noopener">recall notice</a> says. <a '
+                 'href="https://www.ctvnews.ca/health/article/choking-hazard-childrens-bicycle-seats-are-being-recalled-in-canada/" rel="noopener">CTV News</a> also reported the recall.'),
+                ('p',
+                 "The good news: you don't have to throw the seat away. Health Canada says to cut off and pull out the label completely, and then the seat can be used as normal. Décathlon Canada is the "
+                 'contact, at 1-844-533-3322 or onlineservice@decathlon.ca. No incidents or injuries had been reported in Canada as of October 20.'),
+                ('h', 'Warning: baby walkers sold on AliExpress'),
+                ('p',
+                 'On November 5, Health Canada expanded an earlier warning about baby walkers that were sold on AliExpress, adding two more listings: an "oversized heightened" kids walking walker sold '
+                 'as a gait training aid, and a "learning walker" for toddlers, per the <a '
+                 'href="https://recalls-rappels.canada.ca/en/alert-recall/expanded-alert-health-canada-warns-baby-walkers-previously-available-aliexpress-may" rel="noopener">alert</a>.'),
+                ('p',
+                 "Baby walkers are banned in Canada, because children in them can reach hazards they otherwise couldn't and can fall down stairs. Because this is a warning about online listings and not "
+                 "a company recall, there may be no refund. Health Canada's advice is to stop using the walker and destroy it so nobody else can use it."),
+                ('h', 'Before you sell, gift or pass anything on'),
+                ('p',
+                 "It's illegal in Canada to sell, give away or redistribute a recalled product, and that includes Facebook Marketplace and hand-me-downs between friends. Before passing on or accepting "
+                 'baby gear, look for the model number and search the <a href="https://recalls-rappels.canada.ca/en" rel="noopener">Government of Canada recalls site</a>. You can also report a problem '
+                 "with any product using Health Canada's consumer incident report form."),
+                ('think',
+                 "Baby nests and loungers are everywhere on social media, and I understand why they're tempting when you need your hands back for ten minutes. But this recall is a good reminder that "
+                 '"sold in a store" doesn\'t always mean "meets the rules". Before you pass on anything your little one has outgrown, or accept something from a friend, take two minutes on the recalls '
+                 "site. It's worth it.")],
+     'sources': [('Health Canada: Simmons Kozy and Nido Baby Nests/Loungers recall, October 22, 2026',
+                  'https://recalls-rappels.canada.ca/en/alert-recall/simmons-kozy-and-nido-baby-nestsloungers-recalled-due-fall-hazard'),
+                 ('Health Canada: order to recall Valco Baby Trend Duo Double Stroller, October 1, 2026',
+                  'https://recalls-rappels.canada.ca/en/alert-recall/health-canada-orders-junior-brands-corp-recall-valco-baby-trend-duo-double-stroller'),
+                 ('Health Canada: Hamax Buddy child seat recall, October 26, 2026', 'https://recalls-rappels.canada.ca/en/alert-recall/hamax-buddy-child-seat-recalled-due-choking-hazard'),
+                 ('CTV News, October 26, 2026', 'https://www.ctvnews.ca/health/article/choking-hazard-childrens-bicycle-seats-are-being-recalled-in-canada/'),
+                 ('Health Canada: expanded alert on baby walkers sold on AliExpress, November 5, 2026',
+                  'https://recalls-rappels.canada.ca/en/alert-recall/expanded-alert-health-canada-warns-baby-walkers-previously-available-aliexpress-may'),
+                 ('Government of Canada: Recalls and safety alerts', 'https://recalls-rappels.canada.ca/en')]},
     {
         "slug": "ei-maternity-leave-job-loss-ruling-ottawa-wont-appeal",
         "title": "Ottawa won't appeal EI ruling for moms laid off on leave",
