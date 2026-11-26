@@ -470,9 +470,15 @@ for r in RECIPES:
           "recipeCuisine": "Indian", "prepTime": mins(r["prep"]), "cookTime": mins(r["cook"]),
           "totalTime": mins(r["prep"] + r["cook"]), "recipeYield": f'{r["servings"]} servings',
           "recipeIngredient": r["ingredients"],
-          "recipeInstructions": [{"@type": "HowToStep", "text": s} for s in r["steps"]]}
+          "recipeCategory": r.get("cat", "Main course"),
+          "keywords": ", ".join(k for k in dict.fromkeys([EXTRAS.get(r["slug"], {}).get("name", r["title"]), r.get("cat", ""), "Indian recipe", "South Asian", "weeknight dinner", "toddler friendly", "working mom recipes"]) if k),
+          "recipeInstructions": [{"@type": "HowToStep", "position": i, "name": f"Step {i}", "text": s, "url": f"{SITE}/recipes/{r['slug']}/#recipe",
+                                  **({"image": absurl(r["image"])} if r.get("image") else {})} for i, s in enumerate(r["steps"], 1)]}
     if r.get("image"):
         ld["image"] = [absurl(r["image"])]
+    if r.get("reel"):
+        ld["video"] = {"@type": "VideoObject", "name": r["title"], "description": r["summary"], "embedUrl": r["reel"],
+                       "contentUrl": r["reel"], "thumbnailUrl": [absurl(r["image"])] if r.get("image") else [], "uploadDate": r.get("date", "2026-11-24")}
     extra = f'<script type="application/ld+json">{json.dumps(ld)}</script>\n'
     ing = "".join(f"<li>{html.escape(i)}</li>" for i in r["ingredients"])
     steps = "".join(f"<li>{html.escape(s)}</li>" for s in r["steps"])
