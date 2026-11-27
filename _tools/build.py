@@ -214,7 +214,8 @@ write("/about/", head("About Aanchal", "Aanchal Bathija is a working mom in Vanc
       <p>Today I talk about postpartum and mom fitness, women's health, marriage and relationships, South Asian family life, travelling as a family and staying motivated when the to-do list never ends.</p>
       <p>I'm not an expert or a doctor. I share what works for me and my family, and I'm honest about what doesn't.</p>
       <div class="mini-gal">
-        <img src="/images/album/family-festive.jpg" alt="Aanchal with family at a celebration" loading="lazy">
+        <img src="/images/album/maternity-teal.jpg" alt="Aanchal in a flowing teal gown at her maternity shoot in Mexico" loading="lazy">
+        <img src="/images/album/wedding-veil.jpg" alt="Aanchal and Anuj on their wedding day" loading="lazy">
         <img src="/images/album/lunch.jpg" alt="Aanchal and her son at lunch" loading="lazy">
         <img src="/images/album/cozy-sweater.jpg" alt="Aanchal in a cozy sweater" loading="lazy">
       </div>
