@@ -3,6 +3,114 @@
 #   blocks [(kind, value, ...)] (same kinds as blog posts, plus ("think", html) for the "What I think" box),
 #   sources [(label, url)]
 NEWS = [
+    {'slug': 'bc-education-savings-grant-ending-2028',
+     'title': "B.C.'s free $1,200 RESP grant is ending in 2028",
+     'summary': 'B.C. is ending its $1,200 Training and Education Savings Grant in April 2028. Who can still get it, how to apply, and why families want more time.',
+     'date': '2026-11-27',
+     'date_label': 'November 27, 2026',
+     'read': '4 min read',
+     'image': 'https://images.unsplash.com/photo-1580508174046-170816f65662?w=1200&h=800&fit=crop&crop=entropy&q=80&auto=format',
+     'image_alt': 'A white piggy bank on a pink background',
+     'credit': 'Photo via Unsplash',
+     'blocks': [('p',
+                 "If you have young kids in B.C., there's a deadline worth knowing about. The B.C. Training and Education Savings Grant, better known as the BCTESG, is being shut down. It's the $1,200 "
+                 "the province puts into a child's RESP, with no contribution required from the family."),
+                ('h', "What's changing"),
+                ('p',
+                 'The province\'s <a href="https://www.bcbudget.gov.bc.ca/2026/pdf/2026_Budget_and_Fiscal_Plan.pdf" rel="noopener">Budget 2026 fiscal plan</a>, released in February, says the grant will '
+                 'be discontinued effective April 1, 2028.'),
+                ('p',
+                 'This week <a href="https://www.theglobeandmail.com/investing/markets/inside-the-market/article-british-columbia-training-and-education-savings-grant-extension/" rel="noopener">The '
+                 'Globe and Mail reported</a> that, as the end date gets closer, some B.C. residents are asking the province to extend the program. As of today, the end date has not changed.'),
+                ('h', 'How the grant works today'),
+                ('p',
+                 'According to the <a href="https://www2.gov.bc.ca/gov/content/education-training/k-12/support/scholarships/bc-training-and-education-savings-grant" rel="noopener">Province of B.C.</a>, '
+                 'the government contributes $1,200 to eligible children. A child can apply between their 6th birthday and the day before they turn 9. The parent or guardian and the child must live in '
+                 'B.C. when applying and need valid Social Insurance Numbers. The federal application form for the grant says it is for children born in 2006 or later.'),
+                ('p',
+                 "You apply through a bank or other financial institution that offers RESPs and takes part in the program. The province says it has 56 partners, including most major banks. You don't "
+                 "have to put any of your own money in to get the grant, and you can shop around for an RESP provider that doesn't require a contribution to open the account. If your child already has "
+                 "an RESP with a provider that doesn't offer the grant, the province says you can open a second RESP with one that does."),
+                ('h', 'Who could miss out'),
+                ('p',
+                 "Because children can only apply from age 6, the end date matters a lot for younger kids. If the program ends on April 1, 2028 as planned, a child who hasn't turned 6 by then won't be "
+                 "old enough to apply under the current rules. That would include most of today's babies, toddlers and preschoolers."),
+                ('p',
+                 "If your child is between 6 and 8 right now, the most important thing is simple: apply before the grant ends, and before your child's 9th birthday, whichever comes first. Check with "
+                 'your bank about how long the application takes to process.'),
+                ('h', 'Why the grant mattered'),
+                ('p',
+                 "The BCTESG was designed so that families who couldn't afford to save could still start an RESP. The province's own page says it requires no matching or extra contributions, and "
+                 'encourages families to open an RESP even if they can only put in a small amount, because even small savings can grow over time. Other family members or family friends can also open an '
+                 'RESP for a child if they have the information needed to set it up.'),
+                ('p', "For a family starting with nothing in an RESP, a one-time $1,200 deposit at age 6 gives a child's education savings a head start of more than a decade before post-secondary."),
+                ('h', 'What to do now'),
+                ('p',
+                 '• If your child is 6, 7 or 8, ask your bank or RESP provider about the BCTESG this month.<br>• If your child already has an RESP, check whether the $1,200 has actually been paid in. '
+                 'Your annual RESP statement should show it.<br>• If your child is younger, open an RESP anyway if it suits your budget. The federal Canada Education Savings Grant and Canada Learning '
+                 "Bond are separate federal programs and are not part of this change.<br>• Keep an eye on the news. If the province changes the end date, we'll update this story."),
+                ('think',
+                 "My son is two, so under the current rules he'll never be old enough to apply before this ends. $1,200 is real money when you're starting an RESP from zero. If you have a child aged 6 "
+                 "to 8, please don't leave it sitting there. And if you have friends with kids that age, send them this.")],
+     'sources': [('B.C. Budget 2026: Budget and Fiscal Plan 2026/27 to 2028/29, February 17, 2026', 'https://www.bcbudget.gov.bc.ca/2026/pdf/2026_Budget_and_Fiscal_Plan.pdf'),
+                 ('The Globe and Mail, November 27, 2026', 'https://www.theglobeandmail.com/investing/markets/inside-the-market/article-british-columbia-training-and-education-savings-grant-extension/'),
+                 ('Province of B.C.: British Columbia Training & Education Savings Grant',
+                  'https://www2.gov.bc.ca/gov/content/education-training/k-12/support/scholarships/bc-training-and-education-savings-grant'),
+                 ('Government of Canada: BCTESG application (Annex D)',
+                  'https://www.canada.ca/content/dam/canada/employment-social-development/migration/documents/assets/portfolio/docs/en/student_loans/resp/forms/SDE0093D_EN_Locked.pdf')]},
+    {'slug': 'burnaby-rcmp-e-scooter-gift-rules-kids',
+     'title': "Thinking of an e-scooter gift? B.C.'s age rule is 16",
+     'summary': 'Burnaby RCMP wrote a letter to Santa about e-scooters. The rules parents should know before buying one for a child or teen this Christmas.',
+     'date': '2026-11-27',
+     'date_label': 'November 27, 2026',
+     'read': '4 min read',
+     'image': 'https://images.unsplash.com/photo-1576659698370-5bb6e1055990?w=1200&h=800&fit=crop&crop=entropy&q=80&auto=format',
+     'image_alt': 'Three electric kick scooters parked on a paved sidewalk',
+     'credit': 'Photo via Unsplash',
+     'blocks': [('p', "If an e-scooter is on your child's Christmas list, Burnaby RCMP would like a word, with Santa."),
+                ('p',
+                 'On November 26 the detachment published a <a href="https://rcmp.ca/en/bc/burnaby/news/2026/11/4359154" rel="noopener">news release and video</a> in the form of a letter to Santa Claus '
+                 "from its media relations officer, Cpl. Mike Kalanj. The message behind the holiday humour is serious: a lot of kids are asking for e-scooters this year, and many of them aren't legally "
+                 'allowed to ride one.'),
+                ('h', 'The rules in the letter'),
+                ('p',
+                 "The letter tells Santa that in Burnaby you must be at least 16 to ride an e-scooter, and that the same age rule applies in every B.C. municipality that's part of the province's "
+                 'Electric Kick Scooter Pilot Project. It also reminds him that many B.C. municipalities are not in the project at all, and that if he does give an e-scooter to someone old enough, he '
+                 "should include a bicycle helmet, because it's the law."),
+                ('p',
+                 'Cpl. Kalanj wrote that police don\'t want a child to "receive a gift they aren\'t legally allowed to use," <a '
+                 'href="https://www.freshetnews.ca/burnaby-rcmp-urges-santa-not-to-give-kids-e-scooters-for-christmas/" rel="noopener">Burnaby\'s Freshet News reported</a>. The RCMP also reminded '
+                 'families that e-dirt bikes are not street legal, and that e-bikes have their own separate rules.'),
+                ('h', 'Where e-scooters are allowed in Metro Vancouver'),
+                ('p',
+                 'E-scooters can only be ridden on public roads in communities that have joined the pilot. According to the <a '
+                 'href="https://www2.gov.bc.ca/gov/content/transportation/driving-and-cycling/cycling/electric-kick-scooter-rules" rel="noopener">Province of B.C.</a>, participating communities in '
+                 'Greater Vancouver and the Fraser Valley currently include Burnaby, Coquitlam, Port Moody, Richmond, Vancouver, the City and District of North Vancouver, West Vancouver, Bowen Island, '
+                 'the Township of Langley, Squamish and Chilliwack.'),
+                ('p',
+                 "If your city isn't on that list, an e-scooter can't legally be ridden on public roads there, whatever the rider's age. Check the province's page before you buy, because communities can "
+                 'join over time.'),
+                ('h', 'What a legal e-scooter looks like'),
+                ('p',
+                 "The province also sets rules for the scooter itself. Among them: it can't have a seat, its motor output can't be more than 500 watts, it can't weigh more than 45 kg, and its top speed "
+                 "can't be more than 25 km/h on a flat, paved surface. It needs brakes that can stop it within 7.5 metres from top speed, and a bell or horn. Riders don't need a licence or insurance, "
+                 "but they can be ticketed for riding a device that doesn't meet the rules, so it's worth checking the specs before buying online."),
+                ('h', 'Why police are raising it now'),
+                ('p',
+                 "E-scooters, e-bikes and e-dirt bikes have become popular gifts, and many are sold online with little information about local rules. A scooter that is legal to sell in a store isn't "
+                 "necessarily legal to ride on the street in your city, or for your child. The province's rules also say riders must follow any extra rules their own municipality sets, so the details "
+                 'can change from one city to the next.'),
+                ('p', "Burnaby RCMP pointed families to the City of Burnaby's own e-scooter and e-bike page for local rules. Other cities in the pilot, including Coquitlam, publish their own pages too."),
+                ('h', 'Before you buy'),
+                ('p',
+                 "• Check the rider's age. Under 16 means no e-scooter on public roads in B.C.<br>• Check whether your city is part of the pilot.<br>• Check the scooter's specs against the provincial "
+                 "rules, especially speed, power and seat.<br>• Budget for a proper bicycle helmet.<br>• Look up your own city's rules too, since participating communities can add their own."),
+                ('think',
+                 "I love that the RCMP made this a letter to Santa, because it's exactly the kind of gift that sounds fun in a store and turns into a problem on Boxing Day. My son is two, so this is a "
+                 'few years away for us, but those years come fast. If your kid really wants wheels this year, a regular scooter or a bike with a good helmet might be the gift that actually gets used.')],
+     'sources': [('Burnaby RCMP news release, November 26, 2026', 'https://rcmp.ca/en/bc/burnaby/news/2026/11/4359154'),
+                 ('Freshet News, November 26, 2026', 'https://www.freshetnews.ca/burnaby-rcmp-urges-santa-not-to-give-kids-e-scooters-for-christmas/'),
+                 ('Province of B.C.: Electric kick scooter rules and safety', 'https://www2.gov.bc.ca/gov/content/transportation/driving-and-cycling/cycling/electric-kick-scooter-rules')]},
     {'slug': 'statcan-child-care-staff-retention-bc-lowest',
      'title': 'StatCan: B.C. child care staff least likely to stay put',
      'summary': 'A new Statistics Canada study tracks how many early childhood educators stay in child care. Pay, pensions and unions made the biggest difference.',
